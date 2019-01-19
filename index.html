@@ -8,6 +8,7 @@
     <title>Startup Comparison</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+        @import url('https://fonts.googleapis.com/css?family=Playfair+Display:700');
         #back_btn {
             color:#464A5F;
             font-family: 'Source Sans Pro', sans-serif;
@@ -22,26 +23,30 @@
             cursor:pointer;;
             display: block;
             background-image: linear-gradient(to right,#9DFFD4,#52CDC5);
-            height:42px;
-            width:102px;
-            line-height:42px;
-            background-color:;
+            height:30px;
+            width:90px;
+            line-height:30px;
             font-weight:bold;
             text-align:center;
             margin-right: 50px;
         }
         .steps_2,.steps_3,.steps_4,.steps_5
         {
-            background-color: red;
+            background-image: none;
+            background-color: #E5E5E5;
+
         }
         /* .steps_btn {
 
         } */
+        #startup {
+            font-family: 'Playfair Display', serif;
+        }
     </style>
 </head>
 <body>
 
-        <div class="container" style="margin-top:100px;">
+        <div class="container" style="margin-top:30px;">
             <div class="row">
                 <div class="col-md-1">
                     <a>
@@ -49,6 +54,7 @@
                             <span id="back_btn">Back</span>
                     </a>
                 </div>
+                <!-- row end -->
                 <div class="col-md-11">
                     <ul>
                         <li><a class="steps_1">1</a></li>
@@ -58,8 +64,66 @@
                         <li><a class="steps_5">5</a></li>
                     </ul>
                 </div>
-            </div>
+                <!-- col end -->
+            </div><!-- row end -->
         </div>
+        <!-- container end-->
+
+        <div class="container" style="margin-top:30px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" style="font-weight: bold;border-bottom:1px solid black;;">
+                        1. Enter Following Details:
+                    </label>
+                    <form action="/action_page.php">
+                        <div class="col-md-8">
+                          <label for="email">Product Name :</label>
+                          <input type="email" class="form-control" id="email">
+                        </div>
+                        <br>
+                        <div class="col-md-8">
+                          <label for="pwd">Product Type :</label>
+                          <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <br>
+                        <div class="col-md-8">
+                            <label for="email" style="font-weight: bold;border-bottom:1px solid black;;">
+                                2. Enter USP :</label>
+                            <input type="email" class="form-control" id="email">
+                          </div>
+                    </form> 
+                </div>
+                <!-- col end-->
+                <div class="col-md-6">
+                    <h5 id="startup">Same Type of <span>Startup's</span></h5>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="img/start1.png" alt="">
+                        </div>                    
+                        <div class="col-md-2">
+                            <img src="img/start1.png" alt="">
+                        </div>
+                        <div class="col-md-2">
+                            <img src="img/start1.png" alt="">
+                        </div>
+                    </div><!-- row end-->
+                    <br>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="img/start1.png" alt="">
+                        </div>                    
+                        <div class="col-md-2">
+                            <img src="img/start1.png" alt="">
+                        </div>
+                        <div class="col-md-2">
+                            <img src="img/start1.png" alt="">
+                        </div>
+                    </div><!-- row end-->
+                </div><!-- col end-->
+            </div> <!-- row end --->
+
+        </div><!-- container end -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </body>
