@@ -15,9 +15,12 @@
             color:#464A5F;
             font-family: 'Source Sans Pro', sans-serif;
             padding-left: 5px;
+            margin-left: 100px;
+            width: 100px;
         }
         ul{
             list-style-type:none;
+            margin-left: -150px;
         }
         ul li{
             display:inline-block;;
@@ -55,16 +58,16 @@
 </head>
 <body>
 
-        <div class="container" style="margin-top:30px;">
-            <div class="row">
-                <div class="col-md-2">
+        <!-- <div class="container-fluid" style="margin-top:30px;margin-left: 0xp;margin-right: 0px;">
+            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                <div class="col-md-2" style="pading-left:0px;padding-right: 0px;">
                     <a>
                         <img src="icons/arrow-left-solid.png" alt="Back Arrow">
                             <span id="back_btn">BACK</span>
                     </a>
-                </div>
+                </div> -->
                 <!-- row end -->
-                <div class="col-md-10">
+                <!-- <div class="col-md-10" style="pading-left:0px;padding-right: 0px;">
                     <center>
                             <ul>
                                     <li><a class="steps_1" style="color:#fff;">1</a></li>
@@ -75,12 +78,38 @@
                                 </ul>
                     </center>
 
-                </div>
+                </div> -->
                 <!-- col end -->
-            </div><!-- row end -->
-        </div>
+            <!-- </div> -->
+            <!-- row end -->
+        <!-- </div> -->
         <!-- container end-->
-
+        <div class="container-fluid" style="margin-left: 0px;margin-right: 0px;
+        padding-left: 0px;padding-right: 0px;margin-top:50px;">
+            <div class="row">
+                <div class="col-md-12">
+                        <!-- <a>
+                                <img src="icons/arrow-left-solid.png" alt="Back Arrow">
+                                    <span id="back_btn">BACK</span>
+                            </a> -->
+                            <center>
+                                    <ul>
+                                        <li style="float:left;background-image: none;background-color:none;" id="back_btn">
+                                            <a>
+                                                <img src="icons/arrow-left-solid.png" alt="Back Arrow">
+                                                    <span>BACK</span>
+                                            </a>
+                                        </li>
+                                            <li><a class="steps_1" style="color:#fff;">1</a></li>
+                                            <li><a class="steps_2">2</a></li>
+                                            <li><a class="steps_3">3</a></li>
+                                            <li><a class="steps_4">4</a></li>
+                                            <li><a class="steps_5">5</a></li>
+                                        </ul>
+                            </center>                    
+                </div>
+            </div>
+        </div>
         <div class="container" style="margin-top:30px;">
             <div class="row">
                 <div class="col-md-4">
