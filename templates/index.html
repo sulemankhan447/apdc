@@ -70,52 +70,44 @@
 
                   <table >
                   <!-- <img src="http://a3.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397198916/5c5c4436723f443af2f156a9878d56c3.png"> -->
-                {%if name%}
-                    {% for key, value in dic.items() %}
-                
-                      <h1>{{key}}</h1>
+               
             
-                    {% endfor %}
-                {% endif %} 
+                  
       </table>
                 </div>
                 <!-- col end-->
+                
+                {% if name %}
+               
+            
                 <div class="col-md-8">
-                    <table class="table table-hover" id="startup_table" style="display:none;">
+                    <table class="table table-hover" id="startup_table" >
                         <thead>
                           <tr>
                             <th>Logo</th>
                             <th>Startup Name</th>
                             <th>Founded At</th>
-                            <th>Fund Raised</th>
                             <th>Status</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td><img src="{{url_for('static',filename='img/curebit.png')}}" alt="" style="height:40px;width:40px;"></td>
-                            <td>Curebit</td>
-                            <td>2010</td>
-                            <td>20,0000</td>
-                            <td>Operating</td>
-                          </tr>
-                          <tr>
-                            <td><img src="{{url_for('static',filename='img/curebit.png')}}" alt="" style="height:40px;width:40px;"></td>
-                            <td>Curebit</td>
-                            <td>2010</td>
-                            <td>20,0000</td>
-                            <td>Operating</td>
-                          </tr>
-                          <tr>
-                            <td><img src="{{url_for('static',filename='img/curebit.png')}}" alt="" style="height:40px;width:40px;"></td>
-                            <td>Curebit</td>
-                            <td>2010</td>
-                            <td>20,0000</td>
-                            <td>Operating</td>
-                          </tr>
+                         {% for key, value in dic.items() %}
+                            <tr>
+                                
+                                <td><img src="{{value[0]}}" alt="" style="height:40px;width:40px;"></td>
+                                <td>{{key}}</td>
+                                <td>{{value[1]}}</td>
+                                
+                                <td>{{value[3]}}</td>
+                            </tr>
+                          {% endfor %}
+                          
+                         
                         </tbody>
                       </table>
                 </div>
+                {% endif %} 
+
                 <div class="offset-md-10 col-md-2 mt-5">
                         <button type="button" class="btn btn-primary blue_gradient">
                             <a href="ratio.html" style="text-decoration:none;color:#fff;">Next</a>
