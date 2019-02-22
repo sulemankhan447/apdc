@@ -1,5 +1,6 @@
-from flask import Flask, render_template,request,flash
+from flask import Flask, render_template,request,flash, url_for, request, session, redirect
 from flask_pymongo import PyMongo
+import bcrypt
 # import csv
 import pandas as pd
 
@@ -70,12 +71,33 @@ def startup_comparator():
 def cac_ratio():
     return render_template('ratio.html')
 
-@app.route('/register',methods =['GET'])
-def getRegister():
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name' : request.form['name']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['name'], 'password' : hashpass,'email' :request.form['email']})
+            session['name'] = request.form['name']
+            return redirect('/')
+        return 'That username already exists!'
+
     return render_template('register.html')
 
-@app.route('/login',methods=['GET'])
+@app.route('/login',methods=['GET','POST'])
 def getLogin():
+    if request.method == 'POST':
+        users = mongo.db.users
+        login_user = users.find_one({'name' : request.form['username']})
+
+        if login_user:
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+               session['username'] = request.form['username']
+        return redirect('/')
+
     return render_template('login.html')
 
 if __name__ == '__main__':
