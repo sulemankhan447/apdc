@@ -9,7 +9,7 @@ mongo = PyMongo(app)
 @app.route('/', methods = ['GET', 'POST'])
 def startup_comparator():
     if request.method == "POST":
-        return render_template('index.html')
+        return request.form['p_type']
     else:
         return render_template('index.html')
 if __name__ == '__main__':
