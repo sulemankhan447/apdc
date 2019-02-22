@@ -67,8 +67,14 @@ def startup_comparator():
     else:
         return render_template('index.html' ,name = False)
 
-@app.route('/ratio')
+@app.route('/ratio',methods=['GET','POST'])
 def cac_ratio():
+    if request.method == 'POST':
+        annual_revenue = int(request.form['arc'])
+        avg_cust_life =int (request.form['acl'])
+        cac = int(request.form['cac'])
+        ratio = int(avg_cust_life / cac)
+        print(ratio)
     return render_template('ratio.html')
 
 
