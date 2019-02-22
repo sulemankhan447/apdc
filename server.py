@@ -11,7 +11,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/apdc"
 
 mongo = PyMongo(app)
 
-def read_csv():
+def read_csv(category):
     startup_dict = {}
     # csv = open("START.csv","r","encoding = utf-8")
     dataset = pd.read_csv("START.csv")
@@ -59,9 +59,11 @@ def read_csv():
 def startup_comparator():
     if request.method == "POST":
         # return request.form['p_type']
-        startup_dict = read_csv()
-        return render_template('index.html', dick = startup_dict )
+        p_type = request.form['p_type']
+        
+        startup_dict = read_csv(p_type)
+        return render_template('index.html', dic = startup_dict, show= 'block' )
     else:
-        return render_template('index.html')
+        return render_template('index.html' ,name = False)
 if __name__ == '__main__':
     app.run(debug=True)
