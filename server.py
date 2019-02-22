@@ -40,7 +40,7 @@ def read_csv(category):
     startup_status = []
 
     for j in range(len(categories)-1):
-        if ("Media") in str(categories[j]):
+        if (category) in str(categories[j]):
             startup_key = name[j]
             startup_list.append(logo[j])
             startup_list.append(founded[j])
@@ -62,7 +62,7 @@ def startup_comparator():
         p_type = request.form['p_type']
         
         startup_dict = read_csv(p_type)
-        return render_template('index.html', dic = startup_dict, show= 'block' )
+        return render_template('index.html', dic = startup_dict ,name = True)
     else:
         return render_template('index.html' ,name = False)
 

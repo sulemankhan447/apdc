@@ -64,19 +64,19 @@
                                 2. Enter USP :</label>
                             <input type="email" class="form-control" id="email">
                             <br>
-                            <input type="submit" value="submit" class="btn btn-primary blue_gradient">
+                            <input type="submit" value="Submit" class="btn btn-primary blue_gradient">
                           </div>
                     </form> 
 
                   <table >
                   <!-- <img src="http://a3.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397198916/5c5c4436723f443af2f156a9878d56c3.png"> -->
-                  <!-- {% if name %}   -->
+                {%if name%}
                     {% for key, value in dic.items() %}
                 
-                    <h1>{{key}}</h1>
+                      <h1>{{key}}</h1>
             
                     {% endfor %}
-                   <!-- {% endif %}  -->
+                {% endif %} 
       </table>
                 </div>
                 <!-- col end-->
