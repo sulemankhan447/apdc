@@ -77,7 +77,8 @@ def cac_ratio():
         avg_cust_life =int (request.form['acl'])
         cac = int(request.form['cac'])
         ratio = int(avg_cust_life / cac)
-        print(ratio)
+
+        
     return render_template('ratio.html')
 
 
