@@ -49,20 +49,20 @@
                     <br>
                     <form action="http://localhost:5000/" method = "POST">
                         <div class="col-md-8">
-                          <label for="email">Product Name :</label>
-                          <input type="email" class="form-control" id="email">
+                          <label for="p_name">Product Name :</label>
+                          <input type="text" class="form-control" id="p_name" name="p_name">
                         </div>
                         <br>
                         <div class="col-md-8">
-                          <label for="pwd">Product Type :</label>
+                          <label for="p_type">Product Type :</label>
                           <input type="p_type" class="form-control" id="p_type" name="p_type">
                         </div>
                         
                         <br>
                         <div class="col-md-8">
-                            <label for="email" style="font-weight: bold;border-bottom:1px solid black;;">
+                            <label for="usp" style="font-weight: bold;border-bottom:1px solid black;;">
                                 2. Enter USP :</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="text" class="form-control" id="usp" name="usp">
                             <br>
                             <input type="submit" value="Submit" class="btn btn-primary blue_gradient">
                           </div>
@@ -81,6 +81,7 @@
                
             
                 <div class="col-md-8">
+                    <h3>Same Type Of Startups</h3>
                     <table class="table table-hover" id="startup_table" >
                         <thead>
                           <tr>

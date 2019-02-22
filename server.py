@@ -59,10 +59,13 @@ def read_csv(category):
 @app.route('/', methods = ['GET', 'POST'])
 def startup_comparator():
     if request.method == "POST":
+        startup = mongo.db.startup
         
         p_type = request.form['p_type']
+        
         startup_dict = read_csv(p_type)
         
+        startup.insert({'products':[ {'product_name' : request.form['p_name'], 'product_type' : request.form['p_type'], 'usp' : request.form['usp']} ] })
         return render_template('index.html', dic = startup_dict ,name = True)
     else:
         return render_template('index.html' ,name = False)
@@ -91,7 +94,7 @@ def register():
 def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
-        login_user = users.find_one({'name' : request.form['username']})
+        login_user = users.find_one({'name' : request.form['userna  me']})
 
         if login_user:
             if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
