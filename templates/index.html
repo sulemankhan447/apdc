@@ -29,7 +29,7 @@
                                         </li>
                                      
                                             <li style="margin-left:150px;"><a class="steps_1 active" style="color:#fff;">1</a></li>
-                                            <li><a class="steps_2">2</a></li>
+                                            <li><a  href = "ratio.html" class="steps_2" style="color:black"> 2</a></li>
                                             <li><a class="steps_3">3</a></li>
                                             <li><a class="steps_4">4</a></li>
                                             <li><a class="steps_5">5</a></li>
@@ -93,12 +93,14 @@
                         <tbody>
                          {% for key, value in dic.items() %}
                             <tr>
+                               
+                                <td><a href="{{value[2]}}" > <img src="{{value[0]}}" alt="" style="height:40px;width:40px;"> </a></td>
                                 
-                                <td><img src="{{value[0]}}" alt="" style="height:40px;width:40px;"></td>
-                                <td>{{key}}</td>
+                                <td><a href="{{value[2]}}" target="_blank">{{key}}</a></td>
                                 <td>{{value[1]}}</td>
                                 
                                 <td>{{value[3]}}</td>
+                              
                             </tr>
                           {% endfor %}
                           
