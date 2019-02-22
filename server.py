@@ -58,13 +58,17 @@ def read_csv(category):
 @app.route('/', methods = ['GET', 'POST'])
 def startup_comparator():
     if request.method == "POST":
-        # return request.form['p_type']
-        p_type = request.form['p_type']
         
+        p_type = request.form['p_type']
         startup_dict = read_csv(p_type)
+        
         return render_template('index.html', dic = startup_dict ,name = True)
     else:
         return render_template('index.html' ,name = False)
+
+@app.route('/ratio')
+def cac_ratio():
+    return render_template('ratio.html')
 
 @app.route('/register',methods =['GET'])
 def getRegister():
