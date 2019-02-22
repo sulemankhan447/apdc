@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <title>Startup Comparison</title>
-    
+   
 </head>
 <body>
 
@@ -23,7 +23,7 @@
                                     <ul>
                                         <li style="float:left;background-image: none;background-color:none;" id="back_btn">
                                             <a style="background-image:none;">
-                                                <img src="icons/arrow-left-solid.png" alt="Back Arrow">
+                                                <img src="{{url_for('static', filename ='icons/arrow-left-solid.png')}}" alt="Back Arrow">
                                                     <span>BACK</span>
                                             </a>
                                         </li>
@@ -47,7 +47,7 @@
                     </label>
                     <br>
                     <br>
-                    <form action="/action_page.php">
+                    <form action="http://localhost:5000/" method = "POST">
                         <div class="col-md-8">
                           <label for="email">Product Name :</label>
                           <input type="email" class="form-control" id="email">
@@ -80,21 +80,21 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td><img src="img/curebit.png" alt="" style="height:40px;width:40px;"></td>
+                            <td><img src="{{url_for('static',filename='img/curebit.png')}}" alt="" style="height:40px;width:40px;"></td>
                             <td>Curebit</td>
                             <td>2010</td>
                             <td>20,0000</td>
                             <td>Operating</td>
                           </tr>
                           <tr>
-                            <td><img src="img/curebit.png" alt="" style="height:40px;width:40px;"></td>
+                            <td><img src="{{url_for('static',filename='img/curebit.png')}}" alt="" style="height:40px;width:40px;"></td>
                             <td>Curebit</td>
                             <td>2010</td>
                             <td>20,0000</td>
                             <td>Operating</td>
                           </tr>
                           <tr>
-                            <td><img src="img/curebit.png" alt="" style="height:40px;width:40px;"></td>
+                            <td><img src="{{url_for('static',filename='img/curebit.png')}}" alt="" style="height:40px;width:40px;"></td>
                             <td>Curebit</td>
                             <td>2010</td>
                             <td>20,0000</td>
