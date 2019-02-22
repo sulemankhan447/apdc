@@ -67,9 +67,12 @@ def startup_comparator():
         return render_template('index.html' ,name = False)
 
 @app.route('/register',methods =['GET'])
-def getLogin():
+def getRegister():
     return render_template('register.html')
 
+@app.route('/login',methods=['GET'])
+def getLogin():
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
