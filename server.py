@@ -58,7 +58,7 @@ def read_csv(category):
     return startup_dict
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', name = False)
 
 @app.route('/startup_comp', methods = ['GET', 'POST'])
 def startup_comparator():
@@ -116,7 +116,7 @@ def getLogin():
         if login_user:
             if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                session['username'] = request.form['username']
-        return redirect('/')
+        return redirect('/', name = True)
 
     return render_template('login.html')
 
