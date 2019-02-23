@@ -1,168 +1,669 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-    <title>Startup Comparison</title>
-   
-</head>
-<body>
 
-    
-        <div class="container" style = "margin-top:50px;">
+
+<!-- Mirrored from melankolia.space/tf/creativora/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Jan 2019 14:19:14 GMT -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>APDC</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+
+    <!-- Plugin CSs -->
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'assets/css/plugin.css')}}">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for( 'static' , filename ='assets/css/main.css')}}">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{{ url_for ('static', filename = 'assets/css/responsive.css')}}">
+
+</head>
+
+<body>
+    <!-- Header Start -->
+    <header class="home-3">
+        <nav class="navbar header-nav nav-3 navbar-expand-lg">
+            <div class="container container-large">
+                <!-- Brand -->
+                <a class="navbar-brand" href="#">
+                    <img class="light-logo" src="{{ url_for( 'static', filename = 'assets/img/logo-apdc.png')}}" title="" alt="" style="
+                    padding-top: 20px; width: 100px;
+                ">
+                    <img class="dark-logo" src="{{ url_for('static',filename = 'assets/img/logo-apdc-dark.png')}}" title="" alt="" style="width: 100px;">
+                </a>
+                <!-- / -->
+
+                <!-- Mobile Toggle -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <!-- / -->
+
+                <!-- Top Menu -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbar">
+                    <ul class="navbar-nav ml-auto align-items-center">
+                        
+                        <li><a class="nav-link active" href="/" >Home</a></li>
+                       
+                        <li><a class="nav-link" href="login" >Login</a></li>
+
+                        <li><a class="nav-link" href="register" >Signup</a></li>
+
+
+                    </ul>
+                </div>
+                <!-- / -->
+
+            </div><!-- Container -->
+        </nav> <!-- Navbar -->
+    </header>
+    <!-- Header End -->
+    <section class="hero-3 bg-hero-3" data-scroll-index="0">
+        <div class="container between">
             <div class="row">
-                <div class="col-md-12">
-                        <!-- <a>
-                                <img src="icons/arrow-left-solid.png" alt="Back Arrow">
-                                    <span id="back_btn">BACK</span>
-                            </a> -->
-                           
-                                    <ul>
-                                        <li style="float:left;background-image: none;background-color:none;" id="back_btn">
-                                            <a style="background-image:none;">
-                                                <img src="{{url_for('static', filename ='icons/arrow-left-solid.png')}}" alt="Back Arrow">
-                                                    <span>BACK</span>
-                                            </a>
-                                        </li>
-                                     
-                                            <li style="margin-left:150px;"><a class="steps_1 active" style="color:#fff;">1</a></li>
-                                            <li><a  href = "/ratio" class="steps_2" style="color:black"> 2</a></li>
-                                            <li><a class="steps_3">3</a></li>
-                                            <li><a class="steps_4">4</a></li>
-                                            <li><a class="steps_5">5</a></li>
-                                
-                                        </ul>
-                                   
+                <div class="col-lg-8 offset-lg-2 mt-90">
+                    <div class="hero-text-3 text-center text-lg-center">
+                        <h1 class="fading">Automatic Pitch Deck Creator</h1>
+                        <p class="sub-title fading">Automation in making of pitch deck for your startup.
+                        </p>
+                        <div class="btns fading">
+
+                            <a class="light-button" href="work-page.html">Learn More</a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-8 offset-lg-2 mt-80 fading">
+                    <img class="img-fluid" src="{{url_for('static', filename = 'assets/img/hero-mid-3.png')}}" alt="">
                 </div>
             </div>
         </div>
-        <div class="container" style="margin-top:30px;">
+
+
+    </section>
+
+    <!-- Service 3 Start -->
+    <section class="service-3 between" data-scroll-index="1">
+        <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <label for="" style="font-weight: bold;border-bottom:1px solid black;;">
-                        1. Enter Following Details:
-                    </label>
-                    <br>
-                    <br>
-                    <form action="http://localhost:5000/" method = "POST">
-                        <div class="col-md-8">
-                          <label for="p_name">Product Name :</label>
-                          <input type="text" class="form-control" id="p_name" name="p_name">
-                        </div>
-                        <br>
-                        <div class="col-md-8">
-                          <label for="p_type">Product Type :</label>
-                          <input type="p_type" class="form-control" id="p_type" name="p_type">
-                        </div>
-                        
-                        <br>
-                        <div class="col-md-8">
-                            <label for="usp" style="font-weight: bold;border-bottom:1px solid black;;">
-                                2. Enter USP :</label>
-                            <input type="text" class="form-control" id="usp" name="usp">
-                            <br>
-                            <input type="submit" value="Submit" class="btn btn-primary blue_gradient">
-                          </div>
-                    </form> 
-
-                  <table >
-                  <!-- <img src="http://a3.images.crunchbase.com/image/upload/c_pad,h_98,w_98/v1397198916/5c5c4436723f443af2f156a9878d56c3.png"> -->
-               
-            
-                  
-      </table>
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="title text-center">
+                        <h2 class="title-text" data-text="ABOUT"><span class="green-underline"> Services</span></h2>
+                        <p class="sub-title">Our range of programmes and services</p>
+                        <div class="dash"></div>
+                    </div>
                 </div>
-                <!-- col end-->
-                
-                {% if name %}
-               
-            
-                <div class="col-md-8">
-                    <h3>Same Type Of Startups</h3>
-                    <table class="table table-hover" id="startup_table" >
-                        <thead>
-                          <tr>
-                            <th>Logo</th>
-                            <th>Startup Name</th>
-                            <th>Founded At</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                         {% for key, value in dic.items() %}
-                            <tr>
-                               
-                                <td><a href="{{value[2]}}" > <img src="{{value[0]}}" alt="" style="height:40px;width:40px;"> </a></td>
-                                
-                                <td><a href="{{value[2]}}" target="_blank">{{key}}</a></td>
-                                <td>{{value[1]}}</td>
-                                
-                                <td>{{value[3]}}</td>
-                              
-                            </tr>
-                          {% endfor %}
-                          
-                         
-                        </tbody>
-                      </table>
-                </div>
-                {% endif %} 
-
-                <div class="offset-md-10 col-md-2 mt-5">
-                        <button type="button" class="btn btn-primary blue_gradient">
-                            <a href="ratio.html" style="text-decoration:none;color:#fff;">Next</a>
-                            </button>
-                </div>
-                <!-- <div class="col-md-4" style="position:absolute;right:0;">    -->
-                    <!-- <h5 id="startup">Same Type of <span style="color:#9DFFD4;font-weight: bold;
-                    text-shadow: 2px 2px 2px #000;">Startup's</span></h5> -->
-                    <!-- <br> -->
-                    <!-- <br> -->
-                    <!-- <div class="row" style="text-align:center;"> -->
-                        <!-- <div class="col-md-2" style="padding:4px;border:1px solid black;margin-left: 10px;border-radius: 5px;">
-                            <img src="img/start1.png" alt="" style="width:40px;height:40px;
-                            margin:5px;">
-                        </div>                     -->
-                        <!-- <div class="col-md-2" style="padding:5px;border:1px solid black;margin-left: 8px;border-radius: 5px;">
-                            <img src="img/start1.png" alt="" style="width:40px;height:40px;
-                            margin-top:5px;margin-bottom:5px;margin-left:5px;margin-right:5px;">
-                        </div> -->
-                        <!-- <div class="col-md-2" style="padding:5px;border:1px solid black;margin-left: 8px;border-radius: 5px;">
-                            <img src="img/start1.png" alt="" style="width:40px;height:40px;
-                            margin-top:5px;margin-bottom:5px;margin-left:5px;margin-right:5px;">
-                        </div> -->
-                    <!-- </div> -->
-                    <!-- row end-->
-                    <!-- <br> -->
-                    <!-- <div class="row" style="text-align:center;"> -->
-                        <!-- <div class="col-md-2" style="padding:5px;border:1px solid black;margin-left: 8px;border-radius: 5px;">
-                            <img src="img/start1.png" alt="" style="width:40px;height:40px;margin-top:5px;margin-bottom:5px;margin-left:5px;margin-right:5px;">
-                        </div>                     -->
-                        <!-- <div class="col-md-2" style="padding:5px;border:1px solid black;margin-left: 8px;border-radius: 5px;">
-                            <img src="img/start1.png" alt="" style="width:40px;height:40px;
-                            margin-top:5px;margin-bottom:5px;margin-left:5px;margin-right:5px;">
-                        </div> -->
-                        <!-- <div class="col-md-2" style="padding:5px;border:1px solid black;margin-left: 8px;border-radius: 5px;">
-                            <img src="img/start1.png" alt="" style="width:40px;height:40px;
-                            margin-top:5px;margin-bottom:5px;margin-left:5px;margin-right:5px;">
-                        </div> -->
-                    <!-- </div> -->
-                    <!-- row end-->
-
-                    <!-- <div class="row">
-                        <div class="offset-md-2 col-md-2 mt-5">
-                                <button type="button" class="btn btn-primary blue_gradient">Next</button>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="service-3-item">
+                        <div class="icon-service-3  green-gradient">
+                            <i class="fas fa-pencil-ruler"></i>
+                            <i class="far fa-circle"></i>
+                            <i class="far fa-circle"></i>
                         </div>
-                    </div> -->
-                <!-- </div>col end -->
-            </div> <!-- row end --->
+                        <div class="service-3-text">
+                            <h3>Startup Comparator</h3>
+                            <div class="line"></div>
+                            <p>By using the latest coding practices, embracing new…</p>
+                            <div class="service-3-link mt-30">
+                                <a href="/startup_comp">Compare&nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
 
-        </div><!-- container end -->
+                    </div>
+                </div>
 
+                <div class="col-lg-4">
+                    <div class="service-3-item">
+                        <div class="icon-service-3 red-gradient">
+                            <i class="fas fa-code"></i>
+                            <i class="far fa-circle"></i>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="service-3-text">
+                            <h3>CLV : CAC Ratio Calculator</h3>
+                            <div class="line"></div>
+                            <p>Good web design is simple, clear and uncluttered. Our…</p>
+                            <div class="service-3-link mt-30">
+                                <a href="ratio">Calculate &nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="service-3-item">
+                        <div class="icon-service-3 blue-gradient">
+                            <i class="fas fa-tablet"></i>
+                            <i class="far fa-circle"></i>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="service-3-text">
+                            <h3>Risk Analyzer</h3>
+                            <div class="line"></div>
+                            <p>Our range of programmes and services are aimed at…</p>
+                            <div class="service-3-link mt-30">
+                                <a href="#">More info &nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="service-3-item">
+                        <div class="icon-service-3  pink-gradient">
+                            <i class="fas fa-seedling"></i>
+                            <i class="far fa-circle"></i>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="service-3-text">
+                            <h3>Investment Analyzer</h3>
+                            <div class="line"></div>
+                            <p>We are here to help your website achieve the valuable organic..</p>
+                            <div class="service-3-link mt-30">
+                                <a href="#">More info &nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="service-3-item">
+                        <div class="icon-service-3  purple-gradient">
+                            <i class="fas fa-marker"></i>
+                            <i class="far fa-circle"></i>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="service-3-text">
+                            <h3>Pitch Creator</h3>
+                            <div class="line"></div>
+                            <p>Our range of programmes and services are aimed at…</p>
+                            <div class="service-3-link mt-30">
+                                <a href="#">More info &nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-4">
+                    <div class="service-3-item">
+                        <div class="icon-service-3  orange-gradient">
+                            <i class="fas fa-camera-retro"></i>
+                            <i class="far fa-circle"></i>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="service-3-text">
+                            <h3>Photography</h3>
+                            <div class="line"></div>
+                            <p>Our range of programmes and services are aimed at…</p>
+                            <div class="service-3-link mt-30">
+                                <a href="#">More info &nbsp; <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+
+
+            </div>
+        </div>
+    </section>
+    <!-- Service 3 End -->
+
+    <!-- About Start -->
+    <!-- <section class="about between" data-scroll-index="2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 ">
+                    <div class="title text-center">
+                        <h2 class="title-text"><span class="green-underline">About</span></h2>
+                        <p>We're your Creative Agency, since 2010</p>
+                        <div class="dash"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="about-slide">
+                        <div class="about-image about-3-bg">
+                            <div class="owl-carousel owl-theme">
+                                <div class="about-item">
+                                    <figure class="blue-gradient">
+                                        <img class="img-fluid" src="assets/img/about/slider-1.jpg" alt="about">
+                                    </figure>
+                                </div>
+                                <div class="about-item">
+                                    <figure class="red-gradient">
+                                        <img class="img-fluid" src="assets/img/about/slider-2.jpg" alt="about">
+                                    </figure>
+                                </div>
+                                <div class="about-item">
+                                    <figure class="dark-orange-gradient">
+                                        <img class="img-fluid" src="assets/img/about/slider-2.jpg" alt="about">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 centered">
+                    <div class="about-text text-center text-lg-left mt-mobile">
+                        <h2>Who We Are</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt quas
+                            dolore, exercitationem, quisquam aspernatur at temporibus possimus fugiat fugit nulla iusto
+                            illum delectus iure architecto ea, ex assumenda? Quia, voluptatibus?</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-text text-center text-lg-left mt-mobile mt-40">
+                        <h2>Our Vision</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt quas
+                            dolore, exercitationem, quisquam aspernatur at temporibus possimus fugiat fugit nulla iusto
+                            illum delectus iure architecto ea, ex assumenda? Quia, voluptatibus?</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-text text-center text-lg-left mt-mobile mt-40">
+                        <h2>How we work</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt quas
+                            dolore, exercitationem, quisquam aspernatur at temporibus possimus fugiat fugit nulla iusto
+                            illum delectus iure architecto ea, ex assumenda? Quia, voluptatibus?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section> -->
+    <!-- About End -->
+
+    <!-- Work Start -->
+    <!-- <section class="work between" data-scroll-index="3">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="title text-center mb-40">
+                        <h2 class="title-text"><span>Work</span></h2>
+                        <p>Digital Marketing Agency, providing innovative,</p>
+                        <div class="dash"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="owl-carousel owl-theme">
+                <div class="work-item">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <img class="img-fluid" src="assets/img/work/2.jpg" alt="">
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="work-title">
+                                <h2>Panorama</h2>
+                                <p>Photography / Video</p>
+                                <a class="button-work green-gradient" href="#">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <img class="img-fluid" src="assets/img/work/1.jpg" alt="">
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="work-title">
+                                <h2>Midnight Town</h2>
+                                <p>Web Development, UI / UX</p>
+                                <a class="button-work purple-gradient" href="#">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <img class="img-fluid" src="assets/img/work/3.jpg" alt="">
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="work-title">
+                                <h2>Mombasa</h2>
+                                <p>Branding / Art Direction</p>
+                                <a class="button-work pink-gradient" href="#">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <img class="img-fluid" src="assets/img/work/4.jpg" alt="">
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="work-title">
+                                <h2>Of Monsters and Men</h2>
+                                <p>Web Development, UI / UX</p>
+                                <a class="button-work dark-orange-gradient" href="#">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center mt-40">
+                    <a class="dark-button" href="#">VIEW ALL WORKS</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Work End -->
+
+    <!-- Testimonial Start -->
+    <!-- <section class="testimonial between">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 centered text-center text-lg-left">
+                    <div>
+
+                        <h2 class="title-text">What People Says</h2>
+
+
+                        <p class="sub-title mt-20">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <div class="nav-custom mt-40 text-center text-lg-left text-md-left">
+                            <i class="fas fa-arrow-left nav-left"></i>
+                            <i class="fas fa-arrow-right nav-right"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-8">
+                    <div class="testi-content testi-3-bg">
+                        <div class="owl-carousel owl-theme">
+                            <div class="testi-item text-center">
+                                <p>"Breakfast agreeable incommode departure it an. By ignorant at on wondered relation.
+                                    Enough at tastes really so cousin am of."</p>
+                                <div class="author">
+                                    <img src="assets/img/photo-1.png" alt="1">
+                                    <p class="author-text">Nattasha, Aloka CEO</p>
+                                </div>
+                            </div>
+                            <div class="testi-item text-center">
+                                <p>"There is nothing to prevent us from living on the Moon. Many books have been
+                                    written on this subject. ."</p>
+                                <div class="author">
+                                    <img src="assets/img/photo-2.png" alt="1">
+                                    <p class="author-text">Rafian Sevent</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="partner mt-40">
+            <div class="container">
+                <div class="owl-carousel owl-theme">
+                    <div class="parter-item">
+                        <img src="assets/img/partner/1.png" alt="1">
+                    </div>
+                    <div class="parter-item">
+                        <img src="assets/img/partner/2.png" alt="1">
+                    </div>
+                    <div class="parter-item">
+                        <img src="assets/img/partner/3.png" alt="1">
+                    </div>
+                    <div class="parter-item">
+                        <img src="assets/img/partner/4.png" alt="1">
+                    </div>
+                    <div class="parter-item">
+                        <img src="assets/img/partner/5.png" alt="1">
+                    </div>
+                    <div class="parter-item">
+                        <img src="assets/img/partner/6.png" alt="1">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Testimonial End -->
+
+    <!-- Team Start -->
+    <!-- <section class="team between" data-scroll-index="4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="title text-center">
+                        <h2 class="title-text"><span class="green-underline">Team</span></h2>
+                        <p>Good design is simple, clear and uncluttered.</p>
+                        <div class="dash"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="owl-carousel owl-theme">
+                <div class="team-slide">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="team-item">
+                                <div class="team-image green-gradient">
+                                    <figure><img src="assets/img/team/0.jpg" alt="1"/></figure>
+                                </div>
+                                <div class="team-text green-gradient">
+                                    <h3>Jannifer Lucy</h3>
+                                    <p>Developer</p>
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-behance" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="team-item">
+                                <div class="team-image green-gradient">
+                                    <figure><img src="assets/img/team/2.jpg" alt="1"/></figure>
+                                </div>
+                                <div class="team-text green-gradient">
+                                    <h3>James Yanto</h3>
+                                    <p>Art Director</p>
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-behance" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="team-item">
+                                <div class="team-image green-gradient">
+                                    <figure><img src="assets/img/team/3.jpg" alt="1"/></figure>
+                                </div>
+                                <div class="team-text green-gradient">
+                                    <h3>Gerard Way</h3>
+                                    <p>Graphic Designer</p>
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-behance" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="team-item">
+                                <div class="team-image green-gradient">
+                                    <figure><img src="assets/img/team/4.jpg" alt="1"/></figure>
+                                </div>
+                                <div class="team-text green-gradient">
+                                    <h3>Mikayla Jade</h3>
+                                    <p>Senior Marketing</p>
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-behance" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Team Start -->
+
+     <!-- Footer Start -->
+     <section class="work-with mt-80" data-scroll-index="5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <div class="title">
+                            <h2 class="title-text" data-text="CONTACT">LET'S WORK TOGETHER</h2>
     
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+                            <p>Get in touch with us to get started.</p>
+                            <div class="dash"></div>
+                            <div class="mt-50"> <a class="light-button" href="mailto:webmaster@example.com">MAIL US</a></div>
+    
+                        </div>
+    
+                        <a class="to-top green-gradient" href="#" data-scroll-goto="0">
+                            <i class="fa fa-angle-up" aria-hidden="true"></i>
+                            <p>PAGE</p>
+                            <p>TOP</p>
+                        </a>
+    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <footer class="footer footer-type-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <ul class="footer-link">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Service</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Works</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="col-lg-12 text-center">
+                        <div class="logo-footer mt-90">
+                            <a href="#"> <img src="assets/img/logo-dark.png" alt="logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-90 text-center">
+                    <div class="col-lg-12">
+                        <h2>Get in Touch</h2>
+                    </div>
+                    <div class="col-lg-4 mt-30">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <div>
+                            <a href="#">
+                                <p>hello@creativora.com</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-30">
+                        <i class="fas fa-map-marker" aria-hidden="true"></i>
+    
+                        <p>Joxostreet 11/98, 56120, Klaten, Central Java, Indonesia</p>
+                    </div>
+                    <div class="col-lg-4 mt-30">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <div>
+                            <a href="#">
+                                <p>932-321-21-211</p>
+                            </a>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="vertical-dash dark-orange-gradient">
+    
+                </div>
+                <div class="row  text-center">
+                    <div class="col-lg-12">
+                        <h2>Follow us</h2>
+                    </div>
+                    <div class="col-12 mt-30">
+                        <ul class="footer-social">
+                            <li><a href="#"><i class="fab fa-twitter blue-gradient" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram red-gradient" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-dribbble green-gradient" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-behance purple-gradient" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 mt-30">
+                        <p> &copy; 2018 Copyright Creativora</p>
+    
+                        <p>Crafted with <i class="fa fa-heart" aria-hidden="true"></i> by <span>Cingunt</span></p>
+                    </div>
+                </div>
+    
+            </div>
+        </footer> -->
+        <!-- Footer End -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{{ url_for('static' , filename = 'assets/js/plugin.js')}}"></script>
+
+    <script src="{{ url_for('static' , filename = 'assets/js/main.js')}}"></script>
 </body>
+
+
+<!-- Mirrored from melankolia.space/tf/creativora/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 13 Jan 2019 14:19:37 GMT -->
 </html>

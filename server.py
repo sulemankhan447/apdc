@@ -56,8 +56,11 @@ def read_csv(category):
     # print(startup_name, startup_foundedat,)
 
     return startup_dict
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route('/', methods = ['GET', 'POST'])
+@app.route('/startup_comp', methods = ['GET', 'POST'])
 def startup_comparator():
     if request.method == "POST":
         startup = mongo.db.startup
@@ -67,9 +70,9 @@ def startup_comparator():
         startup_dict = read_csv(p_type)
         
         startup.insert({'products':[ {'product_name' : request.form['p_name'], 'product_type' : request.form['p_type'], 'usp' : request.form['usp']} ] })
-        return render_template('index.html', dic = startup_dict ,name = True)
+        return render_template('startup_compare.html', dic = startup_dict ,name = True)
     else:
-        return render_template('index.html' ,name = False)
+        return render_template('startup_compare.html' ,name = False)
 
 @app.route('/ratio',methods=['GET','POST'])
 def cac_ratio():
@@ -108,7 +111,7 @@ def register():
 def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
-        login_user = users.find_one({'name' : request.form['userna  me']})
+        login_user = users.find_one({'name' : request.form['username']})
 
         if login_user:
             if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):

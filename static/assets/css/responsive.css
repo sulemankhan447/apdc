@@ -1,0 +1,179 @@
+
+
+@media (max-width: 575.98px) { 
+    h1 {
+        font-size: 34px;
+    }
+    .work-title {
+        text-align: center;
+      
+    }
+    .bg-hero-1 {
+        background: url('../img/hero-1.png') no-repeat;
+        background-position: center right;
+        background-position-y: 100%;
+        background-size: contain;
+    }
+
+    .bg-hero-2 {
+       background: none;
+    }
+    .bg-hero-4 {    
+       height: 100vh;
+        background-size: 80%;
+       background-position: center bottom;
+     }
+     .bg-hero-4.centered {
+         display: block;
+     }
+     .bg-hero-4 .mt-90 {
+         margin-top: 40px !important;
+     }
+    .title-text::before {
+    
+        display: none;
+    }
+    .work-item img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0px;
+    }
+    .services .container {
+        padding: 50px 40px 60px 40px;
+    }
+    .between {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    .mt-mobile {
+        margin-top: 30px !important;
+    }
+    .hero-text {
+        width: 100%;
+        margin-top: -35vh;
+        text-align: center;
+    }
+    .hero-text-2 h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .hero-text-3 h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .hero-text-4 h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .work-title {
+        position: relative;
+        padding: 50px 10px;
+    }
+    .testi-content {
+        background-size: cover;
+    }
+    
+    .testi-item p {
+        padding: 0 30px;
+    }
+    .decor-1 {
+        display: none;
+    }
+
+    .team .container {
+        padding: 30px;
+    }
+    .article-icon, .article-link {
+        margin-top: 40px;
+     
+    }
+ }
+ /* // Extra small devices (portrait phones, less than 576px) */
+@media (min-width: 575.98px) and (max-width: 767.98px) {
+    .mt-mobile {
+        margin-top: 40px !important;
+    }
+    .between {
+        padding-top:  70px;
+        padding-bottom: 70px;
+    }
+    .hero-text {
+        width: 100%;
+        margin: 0;
+        margin-top:-30vh;
+    }
+    .bg-hero-1 {
+        background: url('../img/hero-1.png') no-repeat;
+        background-position: center right;
+        background-position-y: 50vh;
+        background-size: contain;
+    }
+    .work-title {
+        position: relative;
+        padding: 50px 10px;
+    }
+
+    .bg-hero-4 {    
+        height: 100vh;
+         background-size: 80%;
+        background-position: center bottom;
+      }
+      .bg-hero-4.centered {
+          display: block;
+      }
+}
+
+/* // Small devices (landscape phones, less than 768px) */
+@media (min-width: 767.98px) and (max-width: 991.98px) {
+    .mt-mobile {
+        margin-top: 70px !important;
+    }
+    .between {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .bg-hero-1 {
+        background: url('../img/hero-1.png') no-repeat;
+        background-position: center right;
+        background-position-y: 50vh;
+        background-size: contain;
+    }
+    .hero-text {
+        width: 100%;
+        margin: 0;
+        margin-top: -30vh;
+    }
+    .work-title {
+        position: relative;
+        padding: 50px 10px;
+    }
+    .bg-hero-4 {    
+        height: 100vh;
+         background-size: 80%;
+        background-position: center bottom;
+      }
+      .bg-hero-4.centered {
+          display: block;
+      }
+ }
+
+/* // Medium devices (tablets, less than 992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+   
+    .hero-text {
+        margin: 0;
+      
+    }
+    .work-title {
+        position: relative;
+        padding: 70px 30px;
+    }
+ }
+
+/* // Large devices (desktops, less than 1200px) */
+@media (min-width: 1200px) and (max-width: 1366px) { 
+  
+ }
+
+
+ 
