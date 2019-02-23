@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 import bcrypt
 # import csv
 import pandas as pd
+import math
 
 
 app = Flask(__name__)
@@ -73,12 +74,18 @@ def startup_comparator():
 @app.route('/ratio',methods=['GET','POST'])
 def cac_ratio():
     if request.method == 'POST':
-        annual_revenue = int(request.form['arc'])
-        avg_cust_life =int (request.form['acl'])
-        cac = int(request.form['cac'])
-        ratio = int(avg_cust_life / cac)
-
-        
+        tot_acqui = int(request.form['arc'])
+        noCust =int (request.form['acl'])
+        avgorder = int(request.form['avgorder'])
+        noorder = int(request.form['nooforder'])
+        uniqueCust = int(request.form['uniqueCust'])
+        pf =  int(noorder/uniqueCust)
+        pro = int(request.form['profit'])
+        cac = int(tot_acqui / noCust)
+        clv = int(avgorder * pf * uniqueCust)
+        rat = float(cac / clv)
+        ratio = math.ceil(rat)
+        print('CAC : '+str(cac)+'CLV : '+str(clv)+' Ratio of CAC:CLV : '+str(ratio))
     return render_template('ratio.html')
 
 
