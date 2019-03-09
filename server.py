@@ -57,7 +57,8 @@ def read_csv(category):
     return startup_dict
 @app.route('/')
 def index():
-    return render_template('index.html', name = False)
+    name = session['username']
+    return render_template('index.html' , username = name)
 
 @app.route('/startup_comp', methods = ['GET', 'POST'])
 def startup_comparator():
@@ -106,23 +107,18 @@ def register():
         return 'That username already exists!'
 
     return render_template('register.html')
-# check_password_hash(user.password, password)
+
 @app.route('/login',methods=['GET','POST'])
 def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name' : request.form['username']})
         password = request.form['pass']
-        # document['salt'] = bcrypt.gensalt()
-        # print(login_user['password'], document['salt'])
-        # print(login_user['password'])
         if login_user:
-            # print(bcrypt.hashpw(request.form['pass'].encode('utf-8'),bcrypt.gensalt()))
-            # print(login_user['password'])
             if check_password_hash(login_user['password'],password):
                session['username'] = request.form['username']
-               print('login ')
-        return redirect('/')
+            #    print('login ')
+        return redirect(url_for('index'))
 
     return render_template('login.html')
 
