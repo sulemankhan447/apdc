@@ -1,7 +1,6 @@
 from flask import Flask, render_template,request,flash, url_for, request, session, redirect
 from flask_pymongo import PyMongo
 import bcrypt
-# import csv
 import pandas as pd
 import math
 
@@ -116,7 +115,7 @@ def getLogin():
         if login_user:
             if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                session['username'] = request.form['username']
-        return redirect('/', name = True)
+        return redirect('/')
 
     return render_template('login.html')
 
