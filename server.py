@@ -3,7 +3,7 @@ from flask_pymongo import PyMongo
 import bcrypt
 import pandas as pd
 import math
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -96,25 +96,32 @@ def register():
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['name']})
+        password = request.form['pass']
 
         if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            hashpass = generate_password_hash(password)
             users.insert({'name' : request.form['name'], 'password' : hashpass,'email' :request.form['email']})
             session['name'] = request.form['name']
             return redirect('/')
         return 'That username already exists!'
 
     return render_template('register.html')
-
+# check_password_hash(user.password, password)
 @app.route('/login',methods=['GET','POST'])
 def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name' : request.form['username']})
-
+        password = request.form['pass']
+        # document['salt'] = bcrypt.gensalt()
+        # print(login_user['password'], document['salt'])
+        # print(login_user['password'])
         if login_user:
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            # print(bcrypt.hashpw(request.form['pass'].encode('utf-8'),bcrypt.gensalt()))
+            # print(login_user['password'])
+            if check_password_hash(login_user['password'],password):
                session['username'] = request.form['username']
+               print('login ')
         return redirect('/')
 
     return render_template('login.html')
