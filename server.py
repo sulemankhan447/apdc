@@ -57,8 +57,13 @@ def read_csv(category):
     return startup_dict
 @app.route('/')
 def index():
-    name = session['username']
-    return render_template('index.html' , username = name)
+    if 'username' in session:
+
+        name = session['username']
+        return render_template('index.html' , username = name)
+
+    else:
+        return render_template('index.html')
 
 @app.route('/startup_comp', methods = ['GET', 'POST'])
 def startup_comparator():
@@ -121,6 +126,12 @@ def getLogin():
         return redirect(url_for('index'))
 
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+   # remove the username from the session if it is there
+   session.pop('username', None)
+   return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
