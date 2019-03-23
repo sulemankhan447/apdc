@@ -1,10 +1,9 @@
 from flask import Flask, render_template,request,flash, url_for, request, session, redirect
 from flask_pymongo import PyMongo
 import bcrypt
-# import csv
 import pandas as pd
 import math
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -58,7 +57,17 @@ def read_csv(category):
     return startup_dict
 @app.route('/')
 def index():
+<<<<<<< HEAD
     return render_template('index.html', name = True)
+=======
+    if 'username' in session:
+
+        name = session['username']
+        return render_template('index.html' , username = name)
+
+    else:
+        return render_template('index.html')
+>>>>>>> 69f02a0c8c18267d397297d9170c01bcefedbd7f
 
 @app.route('/startup_comp', methods = ['GET', 'POST'])
 def startup_comparator():
@@ -97,9 +106,10 @@ def register():
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['name']})
+        password = request.form['pass']
 
         if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            hashpass = generate_password_hash(password)
             users.insert({'name' : request.form['name'], 'password' : hashpass,'email' :request.form['email']})
             session['name'] = request.form['name']
             return redirect('/')
@@ -112,13 +122,24 @@ def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name' : request.form['username']})
-
+        password = request.form['pass']
         if login_user:
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            if check_password_hash(login_user['password'],password):
                session['username'] = request.form['username']
+<<<<<<< HEAD
         return render_template('index.html', name = False)
+=======
+            #    print('login ')
+        return redirect(url_for('index'))
+>>>>>>> 69f02a0c8c18267d397297d9170c01bcefedbd7f
 
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+   # remove the username from the session if it is there
+   session.pop('username', None)
+   return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
