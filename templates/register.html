@@ -11,6 +11,37 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{url_for('static',filename='css/register.css')}}">
+    <style>
+        .styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
+
+.styled-select.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+    </style>
 </head>
 <body>
 
@@ -38,6 +69,15 @@
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                            </div>
+
+                            <div class="form-group">
+                                    <div class="styled-select slate">
+                                            <select name="user_type">
+                                              <option>Entrepreneur</option>
+                                              <option>Investor</option>
+                                            </select>
+                                          </div>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
