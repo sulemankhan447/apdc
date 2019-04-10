@@ -132,6 +132,8 @@ def logout():
    # remove the username from the session if it is there
    session.pop('username', None)
    return redirect(url_for('index'))
-
+@app.route('/info')
+def info():
+    return render_template('info.html')
 if __name__ == '__main__':
     app.run(debug=True)
