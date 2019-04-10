@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from flask import Flask, render_template,request,flash, url_for, request, session, redirect
 from flask_pymongo import PyMongo
 import bcrypt
