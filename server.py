@@ -17,7 +17,7 @@ mongo = PyMongo(app)
 def read_csv(category):
     startup_dict = {}
     # csv = open("START.csv","r","encoding = utf-8")
-    dataset = pd.read_csv("START.csv")
+    dataset = pd.read_csv("datasets/START.csv")
     name = (dataset.iloc[:, 0:1]).values.tolist()
     logo = (dataset.iloc[:, 6:7]).values.tolist()
     status = (dataset.iloc[:, 1:2]).values.tolist()
