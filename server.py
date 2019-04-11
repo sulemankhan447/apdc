@@ -103,7 +103,7 @@ def register():
 
         if existing_user is None:
             hashpass = generate_password_hash(password)
-            users.insert({'name' : request.form['name'], 'password' : hashpass,'email' :request.form['email']})
+            users.insert({'name' : request.form['name'], 'password' : hashpass,'email' :request.form['email'],'contact_number':request.form['phone'],'type':request.form['user_type']})
             session['name'] = request.form['name']
             return redirect('/')
         return 'That username already exists!'
