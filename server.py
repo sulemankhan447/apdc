@@ -91,7 +91,6 @@ def cac_ratio():
         rat = float(cac / clv)
         ratio = math.ceil(rat)
         clv_cac.insert({'total_acquistion_cost':tot_acqui,'no_customer':noCust,'average_order':avgorder,'no_order':noorder,'unique_customer':uniqueCust,'purchase_frequency':pf,'profit':pro,'cac':cac,'clv':clv,'ratio':ratio})
-        # print('CAC : '+str(cac)+'CLV : '+str(clv)+' Ratio of CAC:CLV : '+str(ratio))
     return render_template('ratio.html')
 
 
