@@ -52,15 +52,12 @@ def read_csv(category):
 
             startup_dict[startup_key] = startup_list
             startup_list = []
-            
-
     # print(startup_name, startup_foundedat,)
 
     return startup_dict
 @app.route('/')
 def index():
     if 'username' in session:
-
         name = session['username']
         return render_template('index.html' , username = name)
 
@@ -71,11 +68,8 @@ def index():
 def startup_comparator():
     if request.method == "POST":
         startup = mongo.db.startup
-        
         p_type = request.form['p_type']
-        
         startup_dict = read_csv(p_type)
-        
         startup.insert({'products':[ {'product_name' : request.form['p_name'], 'product_type' : request.form['p_type'], 'usp' : request.form['usp']} ] })
         return render_template('startup_compare.html', dic = startup_dict ,name = True)
     else:
@@ -84,6 +78,7 @@ def startup_comparator():
 @app.route('/ratio',methods=['GET','POST'])
 def cac_ratio():
     if request.method == 'POST':
+        clv_cac = mongo.db.ratio
         tot_acqui = int(request.form['arc'])
         noCust =int (request.form['acl'])
         avgorder = int(request.form['avgorder'])
@@ -95,7 +90,8 @@ def cac_ratio():
         clv = int(avgorder * pf * uniqueCust)
         rat = float(cac / clv)
         ratio = math.ceil(rat)
-        print('CAC : '+str(cac)+'CLV : '+str(clv)+' Ratio of CAC:CLV : '+str(ratio))
+        clv_cac.insert({'total_acquistion_cost':tot_acqui,'no_customer':noCust,'average_order':avgorder,'no_order':noorder,'unique_customer':uniqueCust,'purchase_frequency':pf,'profit':pro,'cac':cac,'clv':clv,'ratio':ratio})
+        # print('CAC : '+str(cac)+'CLV : '+str(clv)+' Ratio of CAC:CLV : '+str(ratio))
     return render_template('ratio.html')
 
 
