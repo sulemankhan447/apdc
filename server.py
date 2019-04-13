@@ -140,6 +140,8 @@ def info():
     else:
         return render_template('info.html')
 
-
+@app.route('/dashboard')
+def dash():
+    return render_template('admin/dashboard.html');
 if __name__ == '__main__':
     app.run(debug=True)
