@@ -134,10 +134,9 @@ def logout():
 @app.route('/info',methods=['GET','POST'])
 def info():
     if request.method == 'POST':
-        info = mongo.db.info
+        info = mongo.db.users
         login_user = info.find_one({'name':session['name']})
-        #print(login_user['_id'])
-        info.insert({{'user':[{login_user}]},{'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]}})
+        info.update_one({"_id": login_user["_id"]}, {"$set": {'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]} })
         return render_template('info.html')
     else:
         return render_template('info.html')
