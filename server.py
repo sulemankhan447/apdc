@@ -135,7 +135,9 @@ def logout():
 def info():
     if request.method == 'POST':
         info = mongo.db.info
-        info.insert({'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']})
+        login_user = info.find_one({'name':session['name']})
+        #print(login_user['_id'])
+        info.insert({{'user':[{login_user}]},{'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]}})
         return render_template('info.html')
     else:
         return render_template('info.html')
