@@ -6,10 +6,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dashboard</title>
+  <title>Similar Startups</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{url_for('static',filename='admin/vendors/iconfonts/font-awesome/css/font-awesome.css')}}">
-
   <link rel="stylesheet" href="{{url_for('static',filename='admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{url_for('static',filename='admin/vendors/css/vendor.bundle.base.css')}}">
   <link rel="stylesheet" href="{{url_for('static',filename='admin/vendors/css/vendor.bundle.addons.css')}}">
@@ -155,109 +154,86 @@
               
             </div>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="/dashboard">
               <i class="menu-icon fa fa-dashboard"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-
-          <li class="nav-item">
-              <a class="nav-link" href="/samestartups">
-                <i class="menu-icon fa fa-building-o"></i>
-                <span class="menu-title">Similar Startups</span>
-              </a>
-            </li>
+          <li class="nav-item active">
+                <a class="nav-link" href="/samestartups">
+                  <i class="menu-icon fa fa-building-o"></i>
+                  <span class="menu-title">Similar Startups</span>
+                </a>
+              </li>
             </ul>
       </nav>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
           
+         
+          
+         
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
+            <div class="col-lg-12 grid-margin">
+              <div class="card">
                 <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-cube text-danger icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Total Revenue</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
-                      </div>
-                    </div>
+                  <h4 class="card-title">Same Type of Startups</h4>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            Logo
+                          </th>
+                          <th>
+                            Startup Name
+                          </th>
+                          <th>
+                            Founded at
+                          </th>
+                          <th>
+                            Status
+                          </th>
+                          
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for key, value in startup_dict.items() %}
+                          <tr>
+                            <td class="font-weight-medium">
+                              <a href="{{value[2]}}" > <img src="{{value[0]}}" alt="" style="height:40px;width:40px;"> </a>
+                            </td>
+                            <td>
+                              <a href="{{value[2]}}" target="_blank">{{key}}</a>
+                            </td>
+                            <td>
+                              
+                              {{value[1] | round |int}}
+                              
+                            </td>
+                            <td
+                            {%if value[3] == 'Operating' %}
+                            class="text-danger"
+                            {%else%}
+                            class="text-success"
+                            {%endif%}
+                            >
+                              {{value[3]}}
+                            </td>
+                            
+                            
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
                   </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-receipt text-warning icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Orders</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">3455</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-poll-box text-success icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Sales</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">5693</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-account-location text-info icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Employees</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">246</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
-                  </p>
                 </div>
               </div>
             </div>
           </div>
-          
-         
         
         </div>
         <!-- content-wrapper ends -->

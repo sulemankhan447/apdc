@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import pprint
 from flask import Flask, render_template,request,flash, url_for, request, session, redirect
 from flask_pymongo import PyMongo
 import bcrypt
@@ -13,6 +13,7 @@ app.config['SECRET_KEY'] = "a95ec5d5d69e5e75d869feb78c35d2e15090ae5e2259a5b6"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/apdc"
 
 mongo = PyMongo(app)
+pp = pprint.PrettyPrinter(indent=4)
 
 def read_csv(category):
     startup_dict = {}
@@ -49,7 +50,7 @@ def read_csv(category):
             startup_list.append(founded[j])
             startup_list.append(website_link[j])
             startup_list.append(status[j])
-
+            # startup_list.append(fund[j])
             startup_dict[startup_key] = startup_list
             startup_list = []
     # print(startup_name, startup_foundedat,)
@@ -105,7 +106,7 @@ def register():
             hashpass = generate_password_hash(password)
             users.insert({'name' : request.form['name'], 'password' : hashpass,'email' :request.form['email'],'contact_number':request.form['phone'],'type':request.form['user_type']})
             session['name'] = request.form['name']
-            return redirect('/')
+            return redirect('/info')
         return 'That username already exists!'
 
     return render_template('register.html')
@@ -135,14 +136,35 @@ def logout():
 def info():
     if request.method == 'POST':
         info = mongo.db.users
-        login_user = info.find_one({'name':session['name']})
+        login_user = info.find_one({'name':session['name']})                                                                                                                                                                                                                                                                                                                                                                                                                                    
         info.update_one({"_id": login_user["_id"]}, {"$set": {'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]} })
-        return render_template('info.html')
-    else:
+        return redirect('/dashboard')
+    else:                                                                                                                                                                                           
         return render_template('info.html')
 
-@app.route('/dashboard')
+@app.route('/dashboard')                                                                                                                                                                                                                                                                                                
 def dash():
-    return render_template('admin/dashboard.html');
+    info = mongo.db.users
+    login_user = info.find_one({'name':session['name']})
+    user_info = login_user['info']
+    prod_type = user_info[0]['product_type']
+    startup_dict  = read_csv(prod_type)
+    
+    pp.pprint(startup_dict)
+    return render_template('admin/dashboard.html', user_info = user_info, startup_dict= startup_dict);
+
+
+
+@app.route('/samestartups')                                                                                                                                                                                                                                                                                                
+def similarStartups():
+    info = mongo.db.users
+    login_user = info.find_one({'name':session['name']})
+    user_info = login_user['info']
+    prod_type = user_info[0]['product_type']
+    startup_dict  = read_csv(prod_type)
+    
+    # pp.pprint(startup_dict)
+    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict);
+
 if __name__ == '__main__':
     app.run(debug=True)
