@@ -169,5 +169,8 @@ def similarStartups():
     # pp.pprint(startup_dict)
     return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict);
 
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
