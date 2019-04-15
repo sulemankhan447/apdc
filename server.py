@@ -128,10 +128,13 @@ def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name' : request.form['username']})
+        pp.pprint(login_user['type'])
         password = request.form['pass']
         if login_user:
             if check_password_hash(login_user['password'],password):
-               session['username'] = request.form['username']
+               session['name'] = request.form['username']
+               if login_user['type'] == 'Entrepreneur':
+                   return redirect('/dashboard')
             #    print('login ')
         return redirect(url_for('index'))
 
@@ -161,9 +164,9 @@ def dash():
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
-
-    pp.pprint(startup_dict)
-    return render_template('admin/dashboard.html', user_info = user_info, startup_dict= startup_dict);
+    
+    pp.pprint(login_user)
+    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user);
 
 
 
@@ -175,7 +178,7 @@ def similarStartups():
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
     # pp.pprint(startup_dict)
-    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict);
+    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict, login_user = login_user);
 
 if __name__ == '__main__':
     app.run(debug=True)
