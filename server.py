@@ -79,7 +79,9 @@ def startup_comparator():
 @app.route('/ratio',methods=['GET','POST'])
 def cac_ratio():
     if request.method == 'POST':
-        clv_cac = mongo.db.ratio
+        clv_cac = mongo.db.users
+        login_user = clv_cac.find_one({'name':session['name']})
+        #print(login_user)
         tot_acqui = int(request.form['arc'])
         noCust =int (request.form['acl'])
         avgorder = int(request.form['avgorder'])
@@ -91,7 +93,17 @@ def cac_ratio():
         clv = int(avgorder * pf * uniqueCust)
         rat = float(cac / clv)
         ratio = math.ceil(rat)
-        clv_cac.insert({'total_acquistion_cost':tot_acqui,'no_customer':noCust,'average_order':avgorder,'no_order':noorder,'unique_customer':uniqueCust,'purchase_frequency':pf,'profit':pro,'cac':cac,'clv':clv,'ratio':ratio})
+        clv_cac.update_one(
+                                {"_id": login_user["_id"]},
+                                {"$set":
+                                    {'ratio':[
+                                                {
+                                                    'total_acquistion_cost':tot_acqui,'no_customer':noCust,'average_order':avgorder,'no_order':noorder,'unique_customer':uniqueCust,'purchase_frequency':pf,'profit':pro,'cac':cac,'clv':clv,'ratio':ratio
+                                                }
+                                             ]
+                                    }
+                                }
+                            )
     return render_template('ratio.html')
 
 
@@ -139,13 +151,13 @@ def logout():
 def info():
     if request.method == 'POST':
         info = mongo.db.users
-        login_user = info.find_one({'name':session['name']})                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        login_user = info.find_one({'name':session['name']})
         info.update_one({"_id": login_user["_id"]}, {"$set": {'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]} })
         return redirect('/dashboard')
-    else:                                                                                                                                                                                           
+    else:
         return render_template('info.html')
 
-@app.route('/dashboard')                                                                                                                                                                                                                                                                                                
+@app.route('/dashboard')
 def dash():
     info = mongo.db.users
     login_user = info.find_one({'name':session['name']})
@@ -153,21 +165,20 @@ def dash():
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
     
-    # pp.pprint(startup_dict)
-    return render_template('admin/dashboard.html', user_info = user_info, startup_dict= startup_dict);
+    pp.pprint(login_user)
+    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user);
 
 
 
-@app.route('/samestartups')                                                                                                                                                                                                                                                                                                
+@app.route('/samestartups')
 def similarStartups():
     info = mongo.db.users
     login_user = info.find_one({'name':session['name']})
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
-    
     # pp.pprint(startup_dict)
-    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict);
+    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict, login_user = login_user);
 
 
 
