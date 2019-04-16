@@ -144,6 +144,7 @@ def getLogin():
 def logout():
    # remove the username from the session if it is there
    session.pop('username', None)
+   session.pop('name', None)
    return redirect(url_for('index'))
 
 
@@ -180,7 +181,15 @@ def similarStartups():
     # pp.pprint(startup_dict)
     return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict, login_user = login_user);
 
-
+@app.route('/addinvestments',methods=['GET','POST'])
+def addInvestments():
+    if request.method == 'POST':
+        pass
+    else:
+        info = mongo.db.users
+        login_user = info.find_one({'name':session['name']})
+        user_info = login_user['info']
+        return render_template('admin/investment_details.html', user_info = user_info,login_user = login_user)
 
 
 if __name__ == '__main__':
