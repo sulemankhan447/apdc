@@ -127,7 +127,7 @@ def getLogin():
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name' : request.form['username']})
-        pp.pprint(login_user['type'])
+        #pp.pprint(login_user['type'])
         password = request.form['pass']
         if login_user:
             if check_password_hash(login_user['password'],password):
@@ -188,6 +188,15 @@ def addInvestments():
         login_user = info.find_one({'name':session['name']})
         user_info = login_user['info']
         return render_template('admin/investment_details.html', user_info = user_info,login_user = login_user)
+
+@app.route('/riskfactor',methods=['GET','POST'])
+def calculateRisk():
+    #ROI Calculation
+    invest_gained = 100000
+    total_required_investment = 100000000
+    roi = float(invest_gained / total_required_investment) * 100
+    print('The ROI in % is :',roi)
+    return render_template('register.html')
 
 
 if __name__ == '__main__':
