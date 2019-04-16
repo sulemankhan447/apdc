@@ -25,11 +25,10 @@ def startupRankLoc(location):
     pp.pprint(startupLoc)
     return startupLoc
 
-def calculateRoi(invest,tot):
-    #ROI Calculation
+def calculateROI(invest,tot):
     invest_gained = invest
     total_required_investment = tot
-    roi = float(invest_gained - total_required_investment / total_required_investment) * 100
+    roi = float((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
     print('The ROI in % is :',roi)
     #Year wise ROI Calculation
     d0 = date(2018, 4, 15)
@@ -40,6 +39,9 @@ def calculateRoi(invest,tot):
     print('The Year is:',round(year,4))
     print('The Annual ROI for Year is :',round(roi_year,2))
     return roi_year,roi
+
+def calculateROR():
+    print('ROR')
 
 def read_csv(category):
     startup_dict = {}
@@ -217,7 +219,7 @@ def addInvestments():
 
 @app.route('/riskfactor',methods=['GET','POST'])
 def calculateRisk():
-    calculateRoi(500,20000)
+    calculateROI(500,10000)
     return render_template('register.html')
 
 
