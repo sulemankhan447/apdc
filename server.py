@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 import bcrypt
 import pandas as pd
 import math
+from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -192,10 +193,18 @@ def addInvestments():
 @app.route('/riskfactor',methods=['GET','POST'])
 def calculateRisk():
     #ROI Calculation
-    invest_gained = 100000
-    total_required_investment = 100000000
+    invest_gained = 100
+    total_required_investment = 500
     roi = float(invest_gained - total_required_investment / total_required_investment) * 100
     print('The ROI in % is :',roi)
+    #Year wise ROI Calculation
+    d0 = date(2018, 4, 15)
+    d1 = date(2020, 4, 15)
+    delta = d1 - d0
+    year = delta.days / 365
+    roi_year = ((invest_gained - total_required_investment / total_required_investment)**(1/year)-1)
+    print('The Year is:',round(year,4))
+    print('The Annual ROI for Year is :',round(roi_year,2))
     return render_template('register.html')
 
 
