@@ -16,6 +16,34 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/apdc"
 mongo = PyMongo(app)
 pp = pprint.PrettyPrinter(indent=4)
 
+score = 64
+
+def playerScore(level, exp):
+    
+    totalScore = 0
+
+    if level == 'Beginner':
+        totalScore += 2
+    elif level == 'Intermediate':
+        totalScore += 5
+    else:
+        totalScore += 9
+
+    if exp == 10:
+        totalScore += 10
+    elif exp == 5:
+        totalScore += 5
+    else:
+        totalScore += 2
+    
+    return totalScore
+
+def teamScore(tot_member, totalScore):
+    avgValue = score / tot_member
+    percent = avgValue / 20 *100
+    
+    return percent
+
 def startupRankLoc(location):
     startup_dict = {}
     # csv = open("START.csv","r","encoding = utf-8")
