@@ -194,7 +194,7 @@ def calculateRisk():
     #ROI Calculation
     invest_gained = 100000
     total_required_investment = 100000000
-    roi = float(invest_gained / total_required_investment) * 100
+    roi = float(invest_gained - total_required_investment / total_required_investment) * 100
     print('The ROI in % is :',roi)
     return render_template('register.html')
 
