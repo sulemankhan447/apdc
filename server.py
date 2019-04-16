@@ -26,7 +26,6 @@ def read_csv(category):
     website_link = (dataset.iloc[:, 9:10]).values.tolist()
     founded = (dataset.iloc[:, 2:3]).values.tolist()
     categories = (dataset.iloc[:, 4:5]).values.tolist()
-    
     # print(categories)
     categories = sum(categories, [])
     name = sum(name, [])
@@ -164,7 +163,6 @@ def dash():
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
-    
     pp.pprint(login_user)
     return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user);
 
