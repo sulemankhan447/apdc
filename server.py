@@ -36,12 +36,16 @@ def calculateROI(invest,tot):
     delta = d1 - d0
     year = delta.days / 365
     roi_year = ((invest_gained - total_required_investment / total_required_investment)**(1/year)-1)
-    print('The Year is:',round(year,4))
+    print('The Year is:',round(year,2))
     print('The Annual ROI for Year is :',round(roi_year,2))
     return roi_year,roi
 
-def calculateROR():
-    print('ROR')
+def calculateROR(intial,current):
+    intial_value = intial
+    current_value = current
+    ror = float((abs(current_value - intial_value) / intial_value)*100)
+    print('ROR is:',round(ror,2))
+    return ror
 
 def read_csv(category):
     startup_dict = {}
@@ -220,6 +224,7 @@ def addInvestments():
 @app.route('/riskfactor',methods=['GET','POST'])
 def calculateRisk():
     calculateROI(500,10000)
+    calculateROR(500,10000)
     return render_template('register.html')
 
 
