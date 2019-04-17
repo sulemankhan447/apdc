@@ -155,7 +155,7 @@ def cac_ratio():
                                     }
                                 }
                             )
-    return render_template('ratio.html')
+    return render_template('admin/values.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -205,7 +205,7 @@ def info():
         info = mongo.db.users
         login_user = info.find_one({'name':session['name']})
         info.update_one({"_id": login_user["_id"]}, {"$set": {'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_base':request.form['product_base'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]} })
-        return redirect('/dashboard')
+        return redirect('/ratio')
     else:
         return render_template('admin/info.html')
 
