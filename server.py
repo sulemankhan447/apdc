@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 import bcrypt
 import pandas as pd
 import math
+import statistics
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -39,14 +40,8 @@ def playerScore(level, exp):
 
 def teamScore(tot_member, totalScore):
     avgValue = score / tot_member
-<<<<<<< HEAD
-    percent = avgValue / 20 *100
-    return percent
-=======
     teamPercent = avgValue / 20 *100
-    
     return teamPercent
->>>>>>> 4679652740a58538cd58b2f8b1e85012be007969
 
 def startupRankLoc(location):
     startup_dict = {}
@@ -61,15 +56,15 @@ def calculateROI(invest,tot):
     invest_gained = invest
     total_required_investment = tot
     roi = float((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
-    print('The ROI in % is :',roi)
+    #print('The ROI in % is :',roi)
     #IRR Calculation
     d0 = date(2018, 4, 15)
     d1 = date(2020, 4, 15)
     delta = d1 - d0
     year = math.floor(delta.days / 365)
     roi_year = ((invest_gained - total_required_investment / total_required_investment)**(1/year)-1)
-    print('The Year is:',round(year,2))
-    print('The ROR for',year,'years is:',round(roi_year,2))
+    #print('The Year is:',round(year,2))
+    #print('The ROR for',year,'years is:',round(roi_year,2))
     return roi,roi_year
 
 def read_csv(category):
@@ -248,7 +243,12 @@ def addInvestments():
 
 @app.route('/riskfactor',methods=['GET','POST'])
 def calculateRisk():
-    calculateROI(500,10000)
+    rates = calculateROI(500,10000)
+    total_returns = list(rates)
+    teamPercent = 95
+    total_returns.append(teamPercent)
+    riskFactor = statistics.mean(total_returns)
+    print(round(riskFactor,2))
     return render_template('register.html')
 
 
