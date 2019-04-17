@@ -40,9 +40,9 @@ def playerScore(level, exp):
 
 def teamScore(tot_member, totalScore):
     avgValue = score / tot_member
-    percent = avgValue / 20 *100
+    teamPercent = avgValue / 20 *100
     
-    return percent
+    return teamPercent
 
 def startupRankLoc(location):
     startup_dict = {}
