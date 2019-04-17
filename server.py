@@ -283,6 +283,30 @@ def addTeamProfile():
     else:
         return render_template('/admin/teamprofile.html')
 
+@app.route('/investments',methods=['GET','POST'])
+def addInvestmentDetails():
+    if request.method == 'POST':
+        investment_details = mongo.db.users
+        login_user = investment_details.find_one({'name':session['name']})
+        invest_gain = request.form['invesment_gained']
+        total_req_invest = request.form['investment_required']
+        seed_fund = request.form['seed_fund']
+        business_model = request.form['business_model']
+        investment_details.update_one(
+                                {"_id": login_user["_id"]},
+                                {"$set":
+                                    {'investment_details':[
+                                                {
+                                                    'investment_gained':invest_gain,'required_investment':total_req_invest,'seedFunding':seed_fund,'business_model':business_model
+                                                }
+                                             ]
+                                    }
+                                }
+                            )
+        return render_template('/admin/investment-details.html')
+    else:
+        return render_template('/admin/investment-details.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
