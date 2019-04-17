@@ -217,7 +217,7 @@ def dash():
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
     pp.pprint(login_user)
-    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user);
+    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user)
 
 
 
@@ -229,7 +229,7 @@ def similarStartups():
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
     # pp.pprint(startup_dict)
-    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict, login_user = login_user);
+    return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict, login_user = login_user)
 
 @app.route('/addinvestments',methods=['GET','POST'])
 def addInvestments():
