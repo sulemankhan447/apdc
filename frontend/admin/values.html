@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>APDC - Automatic Pitch Deck Creator</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta content="A premium admin dashboard template by mannatthemes" name="description">
+    <meta content="Mannatthemes" name="author"><!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico"><!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <style>
+        <style>
+        .styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
+
+.styled-select.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+    </style>
+    </style>
+</head>
+
+<body class="account-body">
+    <!-- Log In page -->
+    <div class="row vh-100">
+        <div class="col-lg-4 pr-0">
+            <div class="card mb-0 shadow-none">
+                <div class="card-body">
+                    <div class="px-12">
+                        <div class="media"><a href="index.html" class="logo logo-admin"><img
+                                    src="assets/images/logo-apdc.png" height="55" alt="logo" class="my-3"></a>
+                        </div>
+                        <form class="form-horizontal my-4"
+                            action="https://mannatthemes.com/frogetor/horizontal_dark/index.html">
+                            <div class="form-group" style="margin-bottom:-10px;">
+                                    <label style="color:#fff;">CAC Calculator</label>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="formControlRange">Total Acquisition Cost</label>
+                                <input type="range" onclick="setValue(1,this.value);" name="acquisition_cost" id="acquisition_cost" class="custom-range" min="10000" max="100000" id="customRange2">
+                                <label id="acquisition_value" style="color:#fff;">0</label>
+                            </div>
+                            <div class="form-group">
+                                    <label for="formControlRange">No of Customer Acquired</label>
+                                    <input type="range"  onclick="setValue(2,this.value);" name="name_of_customer" id="name_of_customer" class="custom-range" min="1" max="1000" id="customRange2">
+                                    <label id="customer_value" style="color:#fff;">0</label>
+                            </div>
+                            <div class="form-group" style="margin-bottom:-10px;">
+                               <label style="color:#fff;">CAV Calculator</label>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="formControlRange">Average Order Value</label>
+                                  <input onclick="setValue(3,this.value)" type="range" class="custom-range" min="1" max="5000" id="customRange2">
+                                 <label id="avg_order_value" style="color:#fff;">0</label>
+                            </div>
+                                    <div class="form-group">
+                                            <label for="formControlRange">No of Orders</label>
+                                            <input type="range" onclick="setValue(4,this.value)" class="custom-range" min="0" max="5000" id="customRange2">
+                                            <label for="" style="color:#fff;" id="no_of_order_value">0</label>
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="formControlRange">Total Unique Customers</label>
+                                                <input type="range" onclick="setValue(5,this.value)" class="custom-range" min="0" max="1000" id="customRange2">
+                                                <label for="" style="color:#fff;" id="unique_customer_value">0</label>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="formControlRange">Margin in %</label>
+                                                    <input type="range" onclick="setValue(6,this.value)" class="custom-range" min="0" max="100" id="customRange2">
+                                                   <label id="margin_value" style="color:#fff;">0%</label>
+                                                
+                                                </div>
+
+
+                            <div class="form-group mb-0 row">
+                                <div class="col-12 mt-2"><button
+                                        class="btn btn-primary btn-block waves-effect waves-light"
+                                        type="submit">Submit <i class="fas fa-sign-in-alt ml-1"></i></button></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 p-0 d-flex justify-content-center">
+                <div class="accountbg d-flex align-items-center">
+                    <div class="account-title text-white text-center">
+                        <h4 class="mt-3">Please Fill This</h4>
+                        <div class="border w-25 mx-auto border-primary"></div>
+                        <h1 class="">To Get Insights</h1>
+                    </div>
+                </div>
+            </div>
+    </div><!-- End Log In page -->
+    <script>
+        function setValue(index,value)
+        {
+            if(index == 1)
+            {
+                $('#acquisition_value').text(value);
+            }
+            else if(index == 2)
+            {
+                $('#customer_value').text(value);
+            }
+            else if(index == 3)
+            {
+                $('#avg_order_value').text(value);
+            }
+            else if(index == 4)
+            {
+                //No of Orders
+                $('#no_of_order_value').text(value);
+            }
+            else if(index == 5)
+            {
+                //Total Unique Customers
+                $('#unique_customer_value').text(value);
+            }
+            else if(index == 6)
+            {
+               // MArgin in %
+               $('#margin_value').text(value).append('%');
+            }
+        }
+    </script>
+
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/waves.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script><!-- App js -->
+    <script src="assets/js/app.js"></script>
+</body>
+<!-- Mirrored from mannatthemes.com/frogetor/horizontal_dark/auth-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Apr 2019 10:43:56 GMT -->
+
+</html>

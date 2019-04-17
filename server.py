@@ -163,7 +163,7 @@ def cac_ratio():
                                     }
                                 }
                             )
-    return render_template('ratio.html')
+    return render_template('admin/values.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -180,7 +180,7 @@ def register():
             return redirect('/info')
         return 'That username already exists!'
 
-    return render_template('register.html')
+    return render_template('admin/register.html')
 
 @app.route('/login',methods=['GET','POST'])
 def getLogin():
@@ -212,10 +212,10 @@ def info():
     if request.method == 'POST':
         info = mongo.db.users
         login_user = info.find_one({'name':session['name']})
-        info.update_one({"_id": login_user["_id"]}, {"$set": {'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]} })
-        return redirect('/dashboard')
+        info.update_one({"_id": login_user["_id"]}, {"$set": {'info':[{'company_name':request.form['name'],'product_info':request.form['product_info'],'product_type':request.form['product_type'],'product_base':request.form['product_base'],'product_name':request.form['product_name'],'usp':request.form['usp'],'location':request.form['location']}]} })
+        return redirect('/ratio')
     else:
-        return render_template('info.html')
+        return render_template('admin/info.html')
 
 @app.route('/dashboard')
 def dash():
