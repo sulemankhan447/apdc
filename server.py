@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 import bcrypt
 import pandas as pd
 import math
+import statistics
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -19,7 +20,6 @@ pp = pprint.PrettyPrinter(indent=4)
 score = 64
 
 def playerScore(level, exp):
-    
     totalScore = 0
 
     if level == 'Beginner':
@@ -35,13 +35,12 @@ def playerScore(level, exp):
         totalScore += 5
     else:
         totalScore += 2
-    
+
     return totalScore
 
 def teamScore(tot_member, totalScore):
     avgValue = score / tot_member
     teamPercent = avgValue / 20 *100
-    
     return teamPercent
 
 def startupRankLoc(location):
@@ -57,23 +56,16 @@ def calculateROI(invest,tot):
     invest_gained = invest
     total_required_investment = tot
     roi = float((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
-    print('The ROI in % is :',roi)
-    #Year wise ROI Calculation
+    #print('The ROI in % is :',roi)
+    #IRR Calculation
     d0 = date(2018, 4, 15)
     d1 = date(2020, 4, 15)
     delta = d1 - d0
-    year = delta.days / 365
+    year = math.floor(delta.days / 365)
     roi_year = ((invest_gained - total_required_investment / total_required_investment)**(1/year)-1)
-    print('The Year is:',round(year,2))
-    print('The Annual ROI for Year is :',round(roi_year,2))
-    return roi_year,roi
-
-def calculateROR(intial,current):
-    intial_value = intial
-    current_value = current
-    ror = float((abs(current_value - intial_value) / intial_value)*100)
-    print('ROR is:',round(ror,2))
-    return ror
+    #print('The Year is:',round(year,2))
+    #print('The ROR for',year,'years is:',round(roi_year,2))
+    return roi,roi_year
 
 def read_csv(category):
     startup_dict = {}
@@ -251,8 +243,12 @@ def addInvestments():
 
 @app.route('/riskfactor',methods=['GET','POST'])
 def calculateRisk():
-    calculateROI(500,10000)
-    calculateROR(500,10000)
+    rates = calculateROI(500,10000)
+    total_returns = list(rates)
+    teamPercent = 95
+    total_returns.append(teamPercent)
+    riskFactor = statistics.mean(total_returns)
+    print(round(riskFactor,2))
     return render_template('register.html')
 
 
