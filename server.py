@@ -257,8 +257,31 @@ def calculateRisk():
     total_returns.append(teamPercent)
     riskFactor = statistics.mean(total_returns)
     print(round(riskFactor,2))
-    startupRanking()
     return render_template('register.html')
+
+@app.route('/add-team',methods=['GET','POST'])
+def addTeamProfile():
+    if request.method == 'POST':
+        team_details = mongo.db.users
+        login_user = team_details.find_one({'name':session['name']})
+        name = request.form['name']
+        position = request.form['position']
+        exp = request.form['experience']
+        level = request.form['level']
+        team_details.update_one(
+                                {"_id": login_user["_id"]},
+                                {"$set":
+                                    {'team_details':[
+                                                {
+                                                    'name' : name,'positon':position,'experience':exp,'level':level
+                                                }
+                                             ]
+                                    }
+                                }
+                            )
+        return render_template('/admin/teamprofile.html')
+    else:
+        return render_template('/admin/teamprofile.html')
 
 
 if __name__ == '__main__':
