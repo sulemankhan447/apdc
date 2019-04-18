@@ -563,9 +563,10 @@
                                         <table class="table table-hover mb-0">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th class="border-top-0">Rank</th>
-                                                    <th class="border-top-0">Startup Name</th>
+                                                    <th class="border-top-0">Globe Rank</th>
                                                     <th class="border-top-0">Logo</th>
+                                                    <th class="border-top-0">Start Name</th>
+                                                    <th class="border-top-0">SR Score</th>
                                                     <!-- <th class="border-top-0">Location</th> -->
                                                 </tr>
                                                 <!--end tr-->
@@ -578,11 +579,12 @@
                                                         <h4 style="color:#fff;">{{startup[0]}}</h4>
                                                             <!-- <img class="" src="assets/images/products/img-1.png" alt="user"> -->
                                                     </td>
-                                                    <td>Beg</td>
+                                                    <td><img  src="{{startup[1]['startup_logo']}}" alt="user"></td>
     
-                                                    <td>3/03/2019 4:29 PM</td>
+                                                    <td>{{startup[1]['startup']}}</td>
                                                     <!-- <td><span class="badge badge-boxed badge-soft-success">Shipped</span> -->
                                                     </td>
+                                                    <td>{{startup[1]['sr_score']}}</td>
                                                 </tr>
                                                 {%endfor%}
                                             </tbody>
