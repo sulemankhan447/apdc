@@ -5,13 +5,13 @@ from flask_pymongo import PyMongo
 import bcrypt
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import label_binarize
-from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.model_selection import cross_val_score
-from sklearn.ensemble import AdaBoostClassifier
+# from sklearn.preprocessing import label_binarize
+# from sklearn.preprocessing import LabelEncoder
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.metrics import precision_score
+# from sklearn.metrics import recall_score
+# from sklearn.model_selection import cross_val_score
+# from sklearn.ensemble import AdaBoostClassifier
 import math
 import statistics
 from datetime import date
@@ -163,6 +163,7 @@ def cac_ratio():
                                     }
                                 }
                             )
+        return render_template('admin/investment-details.html')
     return render_template('admin/values.html')
 
 
