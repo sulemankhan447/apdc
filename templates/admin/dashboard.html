@@ -558,7 +558,7 @@
                             <div class="card">
                                 <div class="card-body new-user order-list">
                                     
-                                    <h4 class="header-title mt-0 mb-3">SIMILAR STARTUPS IN YOUR LOCATION</h4>
+                                    <h4 class="header-title mt-0 mb-3">SIMILAR STARTUPS IN {{location}}</h4>
                                     <div class="table-responsive">
                                         <table class="table table-hover mb-0">
                                             <thead class="thead-light">
@@ -571,9 +571,11 @@
                                                 <!--end tr-->
                                             </thead>
                                             <tbody>
+                                                {% for startup in locstartups%}
                                                 <tr>
+
                                                     <td>
-                                                        <h3 style="color:#fff;">1</h3>
+                                                        <h4 style="color:#fff;">{{startup[0]}}</h4>
                                                             <!-- <img class="" src="assets/images/products/img-1.png" alt="user"> -->
                                                     </td>
                                                     <td>Beg</td>
@@ -582,63 +584,7 @@
                                                     <!-- <td><span class="badge badge-boxed badge-soft-success">Shipped</span> -->
                                                     </td>
                                                 </tr>
-                                                <!--end tr-->
-                                                <tr>
-                                                    <td>
-                                                            <h3 style="color:#fff;">1</h3>
-                                                        <!-- <img class="" src="assets/images/products/img-2.png" alt="user"> -->
-                                                    </td>
-                                                    <td>Watch</td>
-                                                    <td>13/03/2019 1:09 PM</td>
-                                                    <!-- <td><span class="badge badge-boxed badge-soft-danger">Delivered</span> -->
-                                                    </td>
-                                                </tr>
-                                                <!--end tr-->
-                                                <tr>
-                                                    <td>
-                                                            <h3 style="color:#fff;">1</h3>
-                                                        <!-- <img class="" src="assets/images/products/img-3.png" alt="user"> -->
-                                                    </td>
-                                                    <td>Headphone</td>
-                                                    <td>22/03/2019 12:09 PM</td>
-                                                    <!-- <td><span class="badge badge-boxed badge-soft-warning">Pending</span> -->
-                                                    </td>
-                                                </tr>
-                                                <!--end tr-->
-                                                <tr>
-                                                    <td>
-                                                            <h3 style="color:#fff;">1</h3>
-                                                        <!-- <img class="" src="assets/images/products/img-4.png" alt="user"> -->
-                                                    </td>
-                                                    <td>Purse</td>
-                                                    <td>14/03/2019 8:27 PM</td>
-                                                    <!-- <td><span class="badge badge-boxed badge-soft-success">Shipped</span> -->
-                                                    </td>
-                                                </tr>
-                                                <!--end tr-->
-                                                <tr>
-                                                    <td>
-                                                            <h3 style="color:#fff;">1</h3>
-                                                        <!-- <img class="" src="assets/images/products/img-5.png" alt="user"> -->
-                                                    </td>
-                                                    <td>Shoe</td>
-                                                    <td>18/03/2019 5:09 PM</td>
-                                                    <!-- <td><span class="badge badge-boxed badge-soft-warning">Pending</span> -->
-                                                    </td>
-                                                </tr>
-                                                <!--end tr-->
-                                                <tr>
-                                                    <td>
-                                                            <h3 style="color:#fff;">1</h3>
-                                                        <!-- <img class="" src="assets/images/products/img-6.png" alt="user"> -->
-                                                    </td>
-                                                    <td>Boll</td>
-    
-                                                    <td>30/03/2019 4:29 PM</td>
-                                                    <!-- <td><span class="badge badge-boxed badge-soft-success">Shipped</span> -->
-                                                    </td>
-                                                </tr>
-                                                <!--end tr-->
+                                                {%endfor%}
                                             </tbody>
                                         </table>
                                         <!--end table-->

@@ -80,9 +80,9 @@ def startupRankLoc(location):
     startup_dict = {}
     # csv = open("START.csv","r","encoding = utf-8")
     dataset = pd.read_csv("datasets/startup_ranking.csv",delimiter=',', names = ['rank', 'startup', 'startup_logo', 'sr_score', 'description', 'location','none'])
-    startupLoc = dataset[dataset.location == 'Canada'].head(10)
+    startupLoc = dataset[dataset.location == location].head(10)
     startupLoc = startupLoc.to_dict('index')
-    pp.pprint(startupLoc)
+    # pp.pprint(startupLoc)
     return startupLoc
 
 def calculateROI(invest,tot):
@@ -252,12 +252,17 @@ def info():
 def dash():
     info = mongo.db.users
     login_user = info.find_one({'name':session['name']})
+
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
+    location =login_user['info'][0]['location']
+    
     startup_dict  = read_csv(prod_type)
     n_items = take(10, startup_dict.items())
-    pp.pprint(login_user)
-    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user, startups = n_items)
+    rankStartups = startupRankLoc(location)
+    r_items = take(9, rankStartups.items())
+    pp.pprint(r_items[0])
+    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user, startups = n_items,locstartups = r_items, location = location)
 
 
 
@@ -268,7 +273,7 @@ def similarStartups():
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
-    pp.pprint(startup_dict)
+    # pp.pprint(startup_dict)
     return render_template('admin/startup_compare.html', user_info = user_info, startup_dict= startup_dict, login_user = login_user)
 
 @app.route('/addinvestments',methods=['GET','POST'])
