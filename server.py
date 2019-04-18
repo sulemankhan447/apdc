@@ -28,7 +28,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/apdc"
 mongo = PyMongo(app)
 pp = pprint.PrettyPrinter(indent=4)
 
-score = 64
+score = 0
 
 def playerScore(level, exp):
     totalScore = 0
@@ -50,7 +50,7 @@ def playerScore(level, exp):
     return totalScore
 
 def teamScore(tot_member, totalScore):
-    avgValue = score / tot_member
+    avgValue = totalScore / tot_member
     teamPercent = avgValue / 20 *100
     return teamPercent
 
@@ -193,7 +193,7 @@ def cac_ratio():
                                     }
                                 }
                             )
-        return redirect('/investment')
+        return redirect('/investments')
     return render_template('admin/values.html')
 
 
@@ -250,10 +250,13 @@ def info():
 
 @app.route('/dashboard')
 def dash():
+    score = 0
     info = mongo.db.users
     login_user = info.find_one({'name':session['name']})
 
     user_info = login_user['info']
+    team_details = login_user['team_details']
+    tot_member = len(team_details)
     prod_type = user_info[0]['product_type']
     location =login_user['info'][0]['location']
     
@@ -261,7 +264,15 @@ def dash():
     n_items = take(10, startup_dict.items())
     rankStartups = startupRankLoc(location)
     r_items = take(9, rankStartups.items())
-    pp.pprint(r_items[0])
+
+    for i in team_details:
+        level = i['level']
+        exp = i['experience']
+        score += playerScore(level , exp)
+        pp.pprint(score)
+
+    team_percent = int(teamScore(tot_member, score))
+    pp.pprint(team_percent)
     return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user, startups = n_items,locstartups = r_items, location = location)
 
 
