@@ -273,7 +273,14 @@ def dash():
 
     team_percent = int(teamScore(tot_member, score))
     pp.pprint(team_percent)
-    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user, startups = n_items,locstartups = r_items, location = location)
+    return render_template('admin/dashboard.html', user_info = user_info, 
+    startup_dict = startup_dict, 
+    login_user = login_user, 
+    startups = n_items,
+    locstartups = r_items, 
+    location = location, 
+    team_details= team_details, 
+    tot_member=tot_member )
 
 
 
