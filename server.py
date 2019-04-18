@@ -255,9 +255,9 @@ def dash():
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
-    n_items = take(2, startup_dict.items())
-    pp.pprint(n_items[0])
-    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user)
+    n_items = take(10, startup_dict.items())
+    pp.pprint(n_items)
+    return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user, startups = n_items)
 
 
 

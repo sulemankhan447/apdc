@@ -516,15 +516,30 @@
                                             <!--end tr-->
                                         </thead>
                                         <tbody>
+                                            {% for startup in startups %}
+                                            <!-- <h1>{{startup[1][0]}}</h1>0 -->
                                             <tr>
-                                                <td><img class="" src="assets/images/products/img-1.png" alt="user">
+                                                <td><img  src="{{startup[1][0]}}" alt="user">
                                                 </td>
-                                                <td>Beg</td>
+                                                <td><a href="{{startup[1][2]}}" target="_blank">{{startup[0]}}</a></td>
 
-                                                <td>3/03/2019 4:29 PM</td>
-                                                <td><span class="badge badge-boxed badge-soft-success">Shipped</span>
+                                                <td>{{startup[1][1] | round |int}}</td>
+                                                <td>
+                                                    <span 
+                                                    {%if startup[1][3] == 'Operating' %}
+                                                        class="badge badge-boxed badge-soft-danger"
+
+                                                    {%else%}
+                                                    class="badge badge-boxed badge-soft-success"
+    
+                                                    {%endif%}
+                                                    >
+                                                    {{startup[1][3]}}
+                                                </span>
+                                               
                                                 </td>
                                             </tr>
+                                            {%endfor%}
                                             <!--end tr-->
                                           
                                             <!--end tr-->
