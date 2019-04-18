@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 import bcrypt
 import numpy as np
 import pandas as pd
+from itertools import islice
 # from sklearn.preprocessing import label_binarize
 # from sklearn.preprocessing import LabelEncoder
 # from sklearn.linear_model import LogisticRegression
@@ -115,6 +116,11 @@ def read_csv(category):
     # print(startup_name, startup_foundedat,)
 
     return startup_dict
+
+def take(n, iterable):
+    "Return first n items of the iterable as a list"
+    return list(islice(iterable, n))
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -225,7 +231,8 @@ def dash():
     user_info = login_user['info']
     prod_type = user_info[0]['product_type']
     startup_dict  = read_csv(prod_type)
-    pp.pprint(login_user)
+    n_items = take(2, startup_dict.items())
+    pp.pprint(n_items[0])
     return render_template('admin/dashboard.html', user_info = user_info, startup_dict = startup_dict, login_user = login_user)
 
 
