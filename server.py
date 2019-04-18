@@ -16,6 +16,8 @@ import math
 import statistics
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
+from fractions import Fraction
+
 
 app = Flask(__name__)
 
@@ -50,6 +52,28 @@ def teamScore(tot_member, totalScore):
     avgValue = score / tot_member
     teamPercent = avgValue / 20 *100
     return teamPercent
+
+def calculate_aspect(width: int, height: int) -> str:
+    temp = 0
+
+    def gcd(a, b):
+        return a if b == 0 else gcd(b, a % b)
+
+    if width == height:
+        return "1:1"
+
+    if width < height:
+        temp = width
+        width = height
+        height = temp
+
+    divisor = gcd(width, height)
+
+    x = int(width / divisor) if not temp else int(height / divisor)
+    y = int(height / divisor) if not temp else int(width / divisor)
+
+    return f"{x}:{y}"
+
 
 def startupRankLoc(location):
     startup_dict = {}
@@ -150,8 +174,8 @@ def cac_ratio():
         pro = int(request.form['profit'])
         cac = int(tot_acqui / noCust)
         clv = int(avgorder * pf * uniqueCust)
-        rat = float(cac / clv)
-        ratio = math.ceil(rat)
+        ratio = calculate_aspect(clv,cac)
+        print(ratio)
         clv_cac.update_one(
                                 {"_id": login_user["_id"]},
                                 {"$set":
@@ -277,7 +301,7 @@ def addTeamProfile():
                                                 {
                                                     'name' : name,'positon':position,'experience':exp,'level':level
                                                 }
-                                             
+
                                     }
                                 }
                             )
