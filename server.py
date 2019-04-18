@@ -163,7 +163,7 @@ def cac_ratio():
                                     }
                                 }
                             )
-        return render_template('admin/investment-details.html')
+        return redirect('/investment')
     return render_template('admin/values.html')
 
 
@@ -259,6 +259,7 @@ def calculateRisk():
     riskFactor = statistics.mean(total_returns)
     print(round(riskFactor,2))
     return render_template('register.html')
+    # db.users.update({"_id":ObjectId("5cb80d3945b8f709c8487b13")},{$push:{"team_details":{"name":"moin","Skills":"Android"}}};
 
 @app.route('/add-team',methods=['GET','POST'])
 def addTeamProfile():
@@ -269,14 +270,14 @@ def addTeamProfile():
         position = request.form['position']
         exp = request.form['experience']
         level = request.form['level']
-        team_details.update_one(
+        team_details.update(
                                 {"_id": login_user["_id"]},
-                                {"$set":
-                                    {'team_details':[
+                                {"$push":
+                                    {'team_details':
                                                 {
                                                     'name' : name,'positon':position,'experience':exp,'level':level
                                                 }
-                                             ]
+                                             
                                     }
                                 }
                             )
@@ -304,7 +305,7 @@ def addInvestmentDetails():
                                     }
                                 }
                             )
-        return render_template('/admin/investment-details.html')
+        return redirect('/add-team')
     else:
         return render_template('/admin/investment-details.html')
 
