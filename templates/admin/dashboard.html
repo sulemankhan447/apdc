@@ -628,7 +628,7 @@
                                     <div class="card-body bg-gradient3">
                                         <div class="">
                                             <div class="card-icon"><i class="far fa-smile"></i></div>
-                                            <h2 class="font-weight-bold text-white">58</h2>
+                                            <h2 class="font-weight-bold text-white">{{team_percent}}%</h2>
                                             <p class="text-white mb-0 font-16">Overall Team Score</p>
                                         </div>
                                     </div>
@@ -642,16 +642,18 @@
                                                                 <p class="px-4 py-1 bg-soft-success d-inline-block rounded">{{team_details[tot_member - 1]['level']}}
                                                                 </p>
                                                                 <ul class="list-inline mb-1">
+                                                                        {%if team_details[tot_member - 1]['level'] == 'Beginner'%}
+                                                                        {%set j = 3%}
+                                                                    {%elif team_details[tot_member - 1]['level'] == 'Intermediate'%}
+                                                                        {%set j = 4%}
+                                                                    {%else%}
+                                                                        {%set j = 5%}
+                                                                    {%endif%}
+    
+                                                                    {%for _ in range(j)%}
                                                                     <li class="list-inline-item mr-0"><i
                                                                             class="mdi mdi-star text-warning font-16"></i></li>
-                                                                    <li class="list-inline-item mr-0"><i
-                                                                            class="mdi mdi-star text-warning font-16"></i></li>
-                                                                    <li class="list-inline-item mr-0"><i
-                                                                            class="mdi mdi-star text-warning font-16"></i></li>
-                                                                    <li class="list-inline-item mr-0"><i
-                                                                            class="mdi mdi-star text-warning font-16"></i></li>
-                                                                    <li class="list-inline-item mr-0"><i
-                                                                            class="mdi mdi-star text-warning font-16"></i></li>
+                                                                    {%endfor%}
                                                                 </ul>
     
                                                             </div>
@@ -663,16 +665,26 @@
                                                             <p class="px-4 py-1 bg-soft-success d-inline-block rounded">{{team_details[i]['level']}}
                                                             </p>
                                                             <ul class="list-inline mb-1">
+                                                                {%if team_details[i]['level'] == 'Beginner'%}
+                                                                    {%set j = 3%}
+                                                                {%elif team_details[i]['level'] == 'Intermediate'%}
+                                                                    {%set j = 4%}
+                                                                {%else%}
+                                                                    {%set j = 5%}
+                                                                {%endif%}
+
+                                                                {%for _ in range(j)%}
                                                                 <li class="list-inline-item mr-0"><i
+                                                                        class="mdi mdi-star text-warning font-16"></i></li>
+                                                                {%endfor%}
+                                                                <!-- <li class="list-inline-item mr-0"><i
                                                                         class="mdi mdi-star text-warning font-16"></i></li>
                                                                 <li class="list-inline-item mr-0"><i
                                                                         class="mdi mdi-star text-warning font-16"></i></li>
                                                                 <li class="list-inline-item mr-0"><i
                                                                         class="mdi mdi-star text-warning font-16"></i></li>
                                                                 <li class="list-inline-item mr-0"><i
-                                                                        class="mdi mdi-star text-warning font-16"></i></li>
-                                                                <li class="list-inline-item mr-0"><i
-                                                                        class="mdi mdi-star text-warning font-16"></i></li>
+                                                                        class="mdi mdi-star text-warning font-16"></i></li> -->
                                                             </ul>
 
                                                         </div>

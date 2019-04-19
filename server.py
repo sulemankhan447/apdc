@@ -260,6 +260,7 @@ def dash():
     prod_type = user_info[0]['product_type']
     location =login_user['info'][0]['location']
     
+    
     startup_dict  = read_csv(prod_type)
     n_items = take(10, startup_dict.items())
     rankStartups = startupRankLoc(location)
@@ -272,6 +273,8 @@ def dash():
         pp.pprint(score)
 
     team_percent = int(teamScore(tot_member, score))
+
+
     pp.pprint(team_percent)
     return render_template('admin/dashboard.html', user_info = user_info, 
     startup_dict = startup_dict, 
@@ -280,7 +283,8 @@ def dash():
     locstartups = r_items, 
     location = location, 
     team_details= team_details, 
-    tot_member=tot_member )
+    tot_member=tot_member,
+    team_percent = team_percent )
 
 
 
