@@ -367,6 +367,27 @@ def addInvestmentDetails():
     else:
         return render_template('/admin/investment-details.html')
 
+@app.route('/calcRoi', methods = ['GET','POST'])
+def calcRoi():
+    if request.method == 'POST':
+        investment_details = mongo.db.users
+        login_user = investment_details.find_one({'name':session['name']})
+        pp.pprint(login_user['investment_details'][0]['required_investment'])
+        invest_gained = login_user['investment_details'][0]['investment_gained']
+        total_required_investment = login_user['investment_details'][0]['required_investment']
+
+        roi = float((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
+        #print('The ROI in % is :',roi)
+        #IRR Calculation
+        d0 = date(request.form['date1'])
+        d1 = date(request.form['date2'])
+        delta = d1 - d0
+        year = math.floor(delta.days / 365)
+        roi_year = ((invest_gained - total_required_investment / total_required_investment)**(1/year)-1)
+        #print('The Year is:',round(year,2))
+        #print('The ROR for',year,'years is:',round(roi_year,2))
+        return roi,roi_year
+    return render_template('/admin/investment-details.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
