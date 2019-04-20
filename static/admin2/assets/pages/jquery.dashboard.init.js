@@ -179,12 +179,18 @@ options = {
     }
 });
 var chart;
+// var success_rate = document.getElementById('riskfact').value();
+var risk_rate = $("#riskfact").val();
+var success_rate =100 - risk_rate ;
+// alert("Risk fact is " + success_rate);
+// var success_rate = '{{riskfact[0]}}';
+// alert(success_rate)
 options = {
     chart: {
         height: 250,
         type: "donut"
     },
-    series: [15, 85],
+    series: [Math.round(success_rate),Math.round(risk_rate)],
     stroke: {
         colors: void 0
     },

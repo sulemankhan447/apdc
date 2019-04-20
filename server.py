@@ -88,7 +88,7 @@ def startupRankLoc(location):
 def calculateROI(invest,tot):
     invest_gained = invest
     total_required_investment = tot
-    roi = float((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
+    roi = ((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
     #print('The ROI in % is :',roi)
     #IRR Calculation
     d0 = date(2018, 4, 15)
@@ -259,8 +259,10 @@ def dash():
     tot_member = len(team_details)
     prod_type = user_info[0]['product_type']
     location =login_user['info'][0]['location']
-    
-    
+
+    invest_gained = login_user['investment_details'][0]['investment_gained']
+    total_required_investment = login_user['investment_details'][0]['required_investment']
+   
     startup_dict  = read_csv(prod_type)
     n_items = take(10, startup_dict.items())
     rankStartups = startupRankLoc(location)
@@ -274,6 +276,11 @@ def dash():
 
     team_percent = int(teamScore(tot_member, score))
 
+    rates = calculateROI(int(invest_gained),int(total_required_investment))
+    total_returns = list(rates)
+    teamPercent = team_percent
+    total_returns.append(teamPercent)
+    riskFactor = statistics.mean(total_returns)
 
     pp.pprint(team_percent)
     return render_template('admin/dashboard.html', user_info = user_info, 
@@ -284,7 +291,8 @@ def dash():
     location = location, 
     team_details= team_details, 
     tot_member=tot_member,
-    team_percent = team_percent )
+    team_percent = team_percent, 
+    riskfact = round(riskFactor,2))
 
 
 
@@ -308,16 +316,6 @@ def addInvestments():
         user_info = login_user['info']
         return render_template('admin/investment_details.html', user_info = user_info,login_user = login_user)
 
-@app.route('/riskfactor',methods=['GET','POST'])
-def calculateRisk():
-    rates = calculateROI(500,10000)
-    total_returns = list(rates)
-    teamPercent = 95
-    total_returns.append(teamPercent)
-    riskFactor = statistics.mean(total_returns)
-    print(round(riskFactor,2))
-    return render_template('register.html')
-    # db.users.update({"_id":ObjectId("5cb80d3945b8f709c8487b13")},{$push:{"team_details":{"name":"moin","Skills":"Android"}}};
 
 @app.route('/add-team',methods=['GET','POST'])
 def addTeamProfile():
@@ -375,7 +373,6 @@ def calcRoi():
         pp.pprint(login_user['investment_details'][0]['required_investment'])
         invest_gained = login_user['investment_details'][0]['investment_gained']
         total_required_investment = login_user['investment_details'][0]['required_investment']
-
         roi = float((abs(invest_gained - total_required_investment) / total_required_investment) * 100)
         #print('The ROI in % is :',roi)
         #IRR Calculation
@@ -387,7 +384,7 @@ def calcRoi():
         #print('The Year is:',round(year,2))
         #print('The ROR for',year,'years is:',round(roi_year,2))
         return roi,roi_year
-    return render_template('/admin/investment-details.html')
+    return render_template('/admin/guage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
