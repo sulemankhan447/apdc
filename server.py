@@ -14,6 +14,7 @@ from itertools import islice
 # from sklearn.model_selection import cross_val_score
 # from sklearn.ensemble import AdaBoostClassifier
 import math
+from pptx import Presentation
 import statistics
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -248,55 +249,69 @@ def info():
     else:
         return render_template('admin/info.html')
 
-@app.route('/dashboard')
+@app.route('/dashboard',methods = ['GET','POST'])
 def dash():
-    score = 0
-    info = mongo.db.users
-    login_user = info.find_one({'name':session['name']})
+    if request.method == 'GET':
+        score = 0
+        info = mongo.db.users
+        login_user = info.find_one({'name':session['name']})
 
-    user_info = login_user['info']
-    user_ratio = login_user['ratio']
+        user_info = login_user['info']
+        user_ratio = login_user['ratio']
 
-    team_details = login_user['team_details']
-    tot_member = len(team_details)
-    prod_type = user_info[0]['product_type']
-    location =login_user['info'][0]['location']
+        team_details = login_user['team_details']
+        tot_member = len(team_details)
+        prod_type = user_info[0]['product_type']
+        location =login_user['info'][0]['location']
 
-    invest_gained = login_user['investment_details'][0]['investment_gained']
-    total_required_investment = login_user['investment_details'][0]['required_investment']
-   
-    startup_dict  = read_csv(prod_type)
-    n_items = take(10, startup_dict.items())
-    rankStartups = startupRankLoc(location)
-    r_items = take(9, rankStartups.items())
+        invest_gained = login_user['investment_details'][0]['investment_gained']
+        total_required_investment = login_user['investment_details'][0]['required_investment']
 
-    for i in team_details:
-        level = i['level']
-        exp = i['experience']
-        score += playerScore(level , exp)
-        
+        startup_dict  = read_csv(prod_type)
+        n_items = take(10, startup_dict.items())
+        rankStartups = startupRankLoc(location)
+        r_items = take(9, rankStartups.items())
 
-    team_percent = int(teamScore(tot_member, score))
+        for i in team_details:
+            level = i['level']
+            exp = i['experience']
+            score += playerScore(level , exp)
 
-    rates = calculateROI(int(invest_gained),int(total_required_investment))
-    total_returns = list(rates)
-    teamPercent = team_percent
-    total_returns.append(teamPercent)
-    riskFactor = statistics.mean(total_returns)
 
-    pp.pprint(login_user)
-    return render_template('admin/dashboard.html', user_info = user_info, 
-    startup_dict = startup_dict, 
-    login_user = login_user, 
-    startups = n_items,
-    locstartups = r_items, 
-    location = location, 
-    team_details= team_details, 
-    tot_member=tot_member,
-    team_percent = team_percent, 
-    riskfact = round(riskFactor,2),
-    user_ratio = user_ratio
-    )
+        team_percent = int(teamScore(tot_member, score))
+
+        rates = calculateROI(int(invest_gained),int(total_required_investment))
+        total_returns = list(rates)
+        teamPercent = team_percent
+        total_returns.append(teamPercent)
+        riskFactor = statistics.mean(total_returns)
+
+        pp.pprint(login_user)
+        return render_template('admin/dashboard.html', user_info = user_info,
+        startup_dict = startup_dict,
+        login_user = login_user,
+        startups = n_items,
+        locstartups = r_items,
+        location = location,
+        team_details= team_details,
+        tot_member=tot_member,
+        team_percent = team_percent,
+        riskfact = round(riskFactor,2),
+        user_ratio = user_ratio
+        )
+    else:
+        info = mongo.db.users
+        login_user = info.find_one({'name':session['name']})
+        pp.pprint(login_user)
+        prs = Presentation()
+        title_slide_layout = prs.slide_layouts[0]
+        slide = prs.slides.add_slide(title_slide_layout)
+        title = slide.shapes.title
+        subtitle = slide.placeholders[1]
+        title.text = login_user['info'][0]['product_name']
+        subtitle.text = login_user['info'][0]['company_name']
+        prs.save('test.pptx')
+
 
 
 
