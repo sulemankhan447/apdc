@@ -284,7 +284,7 @@ def dash():
     total_returns.append(teamPercent)
     riskFactor = statistics.mean(total_returns)
 
-    pp.pprint(user_ratio)
+    pp.pprint(login_user)
     return render_template('admin/dashboard.html', user_info = user_info, 
     startup_dict = startup_dict, 
     login_user = login_user, 
