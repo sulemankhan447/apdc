@@ -255,6 +255,8 @@ def dash():
     login_user = info.find_one({'name':session['name']})
 
     user_info = login_user['info']
+    user_ratio = login_user['ratio']
+
     team_details = login_user['team_details']
     tot_member = len(team_details)
     prod_type = user_info[0]['product_type']
@@ -272,7 +274,7 @@ def dash():
         level = i['level']
         exp = i['experience']
         score += playerScore(level , exp)
-        pp.pprint(score)
+        
 
     team_percent = int(teamScore(tot_member, score))
 
@@ -282,7 +284,7 @@ def dash():
     total_returns.append(teamPercent)
     riskFactor = statistics.mean(total_returns)
 
-    pp.pprint(team_percent)
+    pp.pprint(user_ratio)
     return render_template('admin/dashboard.html', user_info = user_info, 
     startup_dict = startup_dict, 
     login_user = login_user, 
@@ -292,7 +294,9 @@ def dash():
     team_details= team_details, 
     tot_member=tot_member,
     team_percent = team_percent, 
-    riskfact = round(riskFactor,2))
+    riskfact = round(riskFactor,2),
+    user_ratio = user_ratio
+    )
 
 
 

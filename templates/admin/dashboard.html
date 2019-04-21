@@ -322,7 +322,7 @@
                                     <div class="col-8 align-self-center">
                                         <div class="">
                                             <h4 class="mt-0 header-title" style="color:#fff;">CLC CAV RATIO</h4>
-                                            <h1 class="mt-0 font-weight-bold" style="color:#fff;">{{login_user['ratio'][0]['ratio']}}</h1>
+                                            <h2 class="mt-0 font-weight-bold" style="color:#fff;">{{login_user['ratio'][0]['ratio']}}</h2>
                                             <p class="mb-0 text-muted"><span class="text-success"><i
                                                         class="mdi mdi-arrow-up"></i>14.5%</span> Up From Last Week</p>
                                         </div>
@@ -397,14 +397,13 @@
                                             <div class="row">
                                                 <div class="col-12 align-self-center">
                                                     <div class="text-center">
-                                                        <h4 class="mt-0 header-title text-left">Average Product Price
+                                                        <h4 class="mt-0 header-title text-left">Unique Customers
                                                         </h4>
                                                         <div class="icon-info my-3"><i
-                                                                class="dripicons-jewel bg-soft-pink"></i></div>
-                                                        <h2 class="mt-0 font-weight-bold">$1280.00</h2>
-                                                        <p class="mb-1 text-muted"><span class="text-success"><i
-                                                                    class="mdi mdi-arrow-up"></i>35.5%</span> Last 100
-                                                            Subscriptions</p>
+                                                                class="dripicons-user bg-soft-pink"></i></div>
+                                                        <h2 class="mt-0 font-weight-bold">{{user_ratio[0]['unique_customer']}}</h2>
+                                                        <p class="mb-1 text-muted">
+                                                            No. Of Unique Customers</p>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -452,11 +451,11 @@
                                             <div class="row">
                                                 <div class="col-12 align-self-center">
                                                     <div class="text-center">
-                                                        <h4 class="mt-0 header-title text-left">Total Brands</h4>
+                                                        <h4 class="mt-0 header-title text-left">Total Customers</h4>
                                                         <div class="icon-info my-3"><i
-                                                                class="dripicons-store bg-soft-warning"></i></div>
-                                                        <h2 class="mt-0 font-weight-bold">92</h2>
-                                                        <p class="mb-1 text-muted">All International Brands</p>
+                                                                class="dripicons-user-group bg-soft-warning"></i></div>
+                                                        <h2 class="mt-0 font-weight-bold">{{user_ratio[0]['no_customer']}}</h2>
+                                                        <p class="mb-1 text-muted">No. Of Customers</p>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -609,7 +608,7 @@
                                             <div class="card-icon">
                                                 <i class="fas fa-percent"></i>
                                             </div>
-                                            <h2 class="font-weight-bold text-white">Risk Factor</h2>\
+                                            <h2 class="font-weight-bold text-white">Risk Factor</h2>
                                             <input type="hidden" id="riskfact" value="{{riskfact}}">
                                             <br>
                                         </div>
